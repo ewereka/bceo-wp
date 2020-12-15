@@ -70,35 +70,6 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
           'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
           'walker'          => new WP_Bootstrap_Navwalker(),
         ) ); ?>
-        <ul class="flex-fill">
-          <li><a href="/">
-            Home
-          </a></li>
-          <li>
-            <a href="/about">About Us</a>
-            <ul>
-              <li><a href="/faq">FAQs</a></li>
-            </ul>
-          </li>
-          <li><a href="/news">
-            News
-          </a></li>
-          <li><a href="/road-reports">
-            Road Reports
-          </a></li>
-          <li><a href="/projects">
-            Projects
-          </a></li>
-          <li><a href="/education">
-            Education
-          </a></li>
-          <li><a href="http://gis.bceo.org/" target="_blank">
-            Tax Map
-          </a></li>
-          <li><a href="/work-with-bceo">
-            Work with BCEO
-          </a></li>
-        </ul>
       </nav>
     </div>
   </header>
