@@ -7506,10 +7506,13 @@ h5 {
         top: 100%;
         left: 0;
         min-width: 100%; }
-        .main-nav ul li > ul li a {
-          padding: 0.25rem inherit; }
+        .main-nav ul li > ul li {
+          display: block;
+          text-align: left; }
+          .main-nav ul li > ul li a {
+            padding: 0.25rem inherit; }
       .main-nav ul li:hover > ul {
-        display: flex; }
+        display: block; }
 
 
 .hero {

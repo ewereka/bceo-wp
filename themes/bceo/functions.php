@@ -1,19 +1,55 @@
 <?php
 require_once (dirname(__FILE__) . '/inc/class.wp-bootstrap-navwalker.php');
 require_once (dirname(__FILE__) . "/inc/_inc_helpers.php");
+require_once (dirname(__FILE__) . "/inc/_inc_image_sizes.php");
 
 add_action( 'after_setup_theme', 'ewereka_setup' );
 function ewereka_setup() {
-
   load_theme_textdomain( 'com.ewereka.bceo.theme', get_template_directory() . '/languages' );
   add_theme_support( 'title-tag' );
   add_theme_support( 'automatic-feed-links' );
+
+  add_theme_support(
+    'post-formats',
+    array(
+      'link',
+      'aside',
+      'gallery',
+      'image',
+      'quote',
+      'status',
+      'video',
+      'audio',
+      'chat',
+    )
+  );
+
   add_theme_support( 'post-thumbnails' );
-  add_theme_support( 'html5', array( 'search-form' ) );
+
+  add_theme_support(
+    'html5',
+    array(
+      'search-form',
+      'comment-form',
+      'comment-list',
+      'gallery',
+      'caption',
+      'style',
+      'script',
+      'navigation-widgets',
+    )
+  );
+  
+  add_theme_support( 'responsive-embeds' );
+  add_theme_support( 'customize-selective-refresh-widgets' );
+  add_theme_support( 'wp-block-styles' );
+  add_theme_support( 'align-wide' );
+
   global $content_width;
   if ( ! isset( $content_width ) ) { $content_width = 1920; }
   register_nav_menus( array( 'main-menu' => esc_html__( 'Main Menu', 'com.ewereka.bceo.theme' ) ) );
 }
+
 add_action( 'wp_enqueue_scripts', 'ewereka_load_scripts' );
 function ewereka_load_scripts() {
   wp_enqueue_style( 'style', get_stylesheet_uri() );

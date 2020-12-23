@@ -251,6 +251,8 @@ h5 {
         min-width: 100%;
 
         li {
+          display: block;
+          text-align: left;
           a {
             padding: 0.25rem inherit;
           }
@@ -259,7 +261,7 @@ h5 {
 
       &:hover {
         > ul {
-          display: flex;
+          display: block;
         }
       }
     }

@@ -1,7 +1,9 @@
 <?php 
+  $post_type = $post_type ? $post_type : 'post';
   $default_settings = "default_settings";
   $pt_settings = $post_type."_settings";
   $page_hero_image_id = null;
+
   if (have_rows($pt_settings, "option")) {
     while(have_rows($pt_settings, "option")) {
       the_row();
