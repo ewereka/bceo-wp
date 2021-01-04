@@ -7505,12 +7505,18 @@ h5 {
         position: absolute;
         top: 100%;
         left: 0;
-        min-width: 100%; }
+        width: 15rem; }
         .main-nav ul li > ul li {
           display: block;
           text-align: left; }
           .main-nav ul li > ul li a {
             padding: 0.25rem inherit; }
+      .main-nav ul li.menu-item-has-children > a::after {
+        content: ' \f0dd';
+        font-family: 'Font Awesome 5 Free';
+        font-size: 14px;
+        line-height: 17px;
+        vertical-align: top; }
       .main-nav ul li:hover > ul {
         display: block; }
 

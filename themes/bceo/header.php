@@ -67,8 +67,8 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
           'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
           'container'       => false,
           'menu_class'      => 'flex-fill',
-          'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
-          'walker'          => new WP_Bootstrap_Navwalker(),
+          // 'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+          // 'walker'          => new WP_Bootstrap_Navwalker(),
         ) ); ?>
       </nav>
     </div>

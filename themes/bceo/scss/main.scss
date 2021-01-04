@@ -170,6 +170,7 @@ h5 {
       font-weight: 500;
       font-size: 1.2rem;
       text-transform: uppercase;
+
       a {
         color: $body-color;
         text-decoration: none;
@@ -248,7 +249,7 @@ h5 {
         position: absolute;
         top: 100%;
         left: 0;
-        min-width: 100%;
+        width: 15rem;
 
         li {
           display: block;
@@ -256,6 +257,15 @@ h5 {
           a {
             padding: 0.25rem inherit;
           }
+        }
+      }
+
+      &.menu-item-has-children {
+        > a::after {
+          content: ' \f0dd';
+          font-family: 'Font Awesome 5 Free';
+          font-size: 14px; line-height: 17px;
+          vertical-align: top;
         }
       }
 
