@@ -37,4 +37,6 @@ get_template_part('template-part-hero', $post_type); ?>
   </div>
 </div>
 
+<?php get_template_part('template-part', 'recent-projects'); ?>
+
 <?php get_footer(); ?>

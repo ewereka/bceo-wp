@@ -43,12 +43,15 @@ var paths = {
       themeFolder + jsFolder + vendorFolder + "bootstrap/bootstrap.js",
     ],
     src: [themeFolder + jsFolder + srcFolder + "main.js"],
+    editorSrc: [themeFolder + jsFolder + srcFolder + "editor.js"],
     watch: [themeFolder + jsFolder + srcFolder + "**/*.js"],
   },
   styles: {
     src: [themeFolder + sassFolder + "main.scss"],
+    editorSrc: [themeFolder + sassFolder + "editor.scss"],
     watch: [
       themeFolder + sassFolder + "main.scss",
+      themeFolder + sassFolder + "editor.scss",
       themeFolder + sassFolder + incFolder + "**/*.scss",
     ],
   },
@@ -143,11 +146,40 @@ const build_styles = () => {
     .pipe(dest(themeFolder + cssFolder));
 };
 
+const build_editor_styles = () => {
+  "use strict";
+  return src(paths.styles.editorSrc)
+    .pipe(sourcemaps.init())
+    .pipe(
+      sass().on("error", function (error) {
+        fancyLog.error(error);
+      })
+    )
+    .pipe(autoprefixer())
+    .pipe(concat("editor.css"))
+    .pipe(stripStyleComments({ preserve: false }))
+    .pipe(replace("{{VERSION}}", p.version))
+    .pipe(envBuild(cssmin()))
+    .pipe(sourcemaps.write("./"))
+    .pipe(dest(themeFolder + cssFolder));
+};
+
 const build_scripts = () => {
   "use strict";
   return src(paths.scripts.vendor.concat(paths.scripts.src))
     .pipe(sourcemaps.init())
     .pipe(concat("main.js"))
+    .pipe(envBuild(stripComments()))
+    .pipe(envBuild(uglify()))
+    .pipe(sourcemaps.write("./"))
+    .pipe(dest(themeFolder + jsFolder + distFolder));
+};
+
+const build_editor_scripts = () => {
+  "use strict";
+  return src(paths.scripts.editorSrc)
+    .pipe(sourcemaps.init())
+    .pipe(concat("editor.js"))
     .pipe(envBuild(stripComments()))
     .pipe(envBuild(uglify()))
     .pipe(sourcemaps.write("./"))
@@ -188,9 +220,9 @@ const watch_files = () => {
   "use strict";
   watch(
     paths.scripts.watch,
-    series(clean_scripts, move_scripts, build_scripts)
+    series(clean_scripts, move_scripts, build_scripts, build_editor_scripts)
   );
-  watch(paths.styles.watch, series(clean_styles, move_styles, build_styles));
+  watch(paths.styles.watch, series(clean_styles, move_styles, build_styles, build_editor_styles));
 };
 
 const clean = parallel(clean_styles, clean_scripts /*, clean_images*/);
@@ -205,7 +237,9 @@ const build = series(
   clean,
   move,
   build_styles,
-  build_scripts /*build_images, server_replace*/
+  build_editor_styles,
+  build_scripts,
+  build_editor_scripts /*build_images, server_replace*/
 );
 const build_watch = series(build, watch_files);
 

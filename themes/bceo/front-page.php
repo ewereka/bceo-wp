@@ -138,95 +138,9 @@ get_header(); ?>
       </div>
     </div>
   </div>
-
-  <div class="row section-numbers no-gutters">
-    <div class="col-12 padded-area bg-primary text-dark">
-      <header>
-        <h2 class="text-dark accent-line-yellow">BCEO By the Numbers</h2>
-      </header>
-
-      <div class="content justify-content-center">
-        <figure class="numbers-placeholder">
-          <img src="<?php theme_asset('img/placeholders/numbers.jpg'); ?>" class="img-fluid">
-        </figure>
-      </div>
-      </div>
-    </div>
-  </div>
 </div>
 
-<div class="row section-recent-projects no-gutters">
-  <div class="col-12 recent-projects-wrapper bg-dark text-light padded-area">
-    <header>
-      <h2 class="accent-line-yellow">Recent Projects</h2>
-    </header>
-    <div class="content container-fluid px-0">
-      <div class="row">
-        <div class="col-4">
-          <article class="article summary recent-project"><a href="/projects">
-            <header>
-              <figure class="thumbnail">
-                <img src="<?php theme_asset('img/news/sample-1.jpg'); ?>" class="img-fluid">
-              </figure>
-              
-              <div class="overlay">
-                <h5>UNION CENTRE BLVD 
-                  DOUBLE DIAMOND
-                  INTERCHANGE</h5>
-                <div class="meta-fields">
-                  <p class="meta btn-sm btn-warning">Read More</p>
-                </div>
-              </div>
-              
-            </header>
-          </a></article>
-        </div>
-
-        <div class="col-4">
-          <article class="article summary recent-project"><a href="/projects">
-            <header>
-              <figure class="thumbnail">
-                <img src="<?php theme_asset('img/news/sample-1.jpg'); ?>" class="img-fluid">
-              </figure>
-              
-              <div class="overlay">
-                <h5>TOLBERT RD 
-                  SUPERSTRUCTURE
-                  REPLACEMENT</h5>
-                <div class="meta-fields">
-                  <p class="meta btn-sm btn-warning">Read More</p>
-                </div>
-              </div>
-              
-            </header>
-          </a></article>
-        </div>
-
-        <div class="col-4">
-          <article class="article summary recent-project"><a href="/projects">
-            <header>
-              <figure class="thumbnail">
-                <img src="<?php theme_asset('img/news/sample-1.jpg'); ?>" class="img-fluid">
-              </figure>
-              
-              <div class="overlay">
-                <h5>HAMILTON-MASON AND
-                  MAUD HUGHES
-                  BRIDGE</h5>
-                <div class="meta-fields">
-                  <p class="meta btn-sm btn-warning">Read More</p>
-                </div>
-              </div>
-              
-            </header>
-          </a></article>
-        </div>
-      </div>
-    </div>
-    <footer class="text-right text-light">
-      <a href="/projects" class="view-more-cta text-light">View More</a>
-    </footer>
-  </div>
-</div>
+<?php get_template_part('template-part', 'by-the-numbers'); ?>
+<?php get_template_part('template-part', 'recent-projects'); ?>
 
 <?php get_footer(); ?>

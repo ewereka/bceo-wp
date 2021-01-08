@@ -1,0 +1,14 @@
+@each $color, $value in $colors {
+  .accent-line-#{$color} {
+    &:after {
+      margin: 1.5rem 0;
+      display: block;
+      width: 5rem;
+      height: 0.2rem;
+      content: "";
+      overflow: hidden;
+      background-color: #{$value};
+      text-decoration: none;
+    }
+  }
+}

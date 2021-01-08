@@ -1,6 +1,7 @@
 <?php
 require_once (dirname(__FILE__) . '/inc/class.wp-bootstrap-navwalker.php');
 require_once (dirname(__FILE__) . "/inc/_inc_helpers.php");
+require_once (dirname(__FILE__) . "/inc/_inc_gutenberg_mods.php");
 require_once (dirname(__FILE__) . "/inc/_inc_image_sizes.php");
 
 add_action( 'after_setup_theme', 'ewereka_setup' );
@@ -44,6 +45,13 @@ function ewereka_setup() {
   add_theme_support( 'customize-selective-refresh-widgets' );
   add_theme_support( 'wp-block-styles' );
   add_theme_support( 'align-wide' );
+
+  add_theme_support( 'custom-logo', array(
+    'width'       => 150,
+    'flex-height' => true,
+    'header-text' => array( 'site-title' ),
+    'unlink-homepage-logo' => true,
+  ) );
 
   global $content_width;
   if ( ! isset( $content_width ) ) { $content_width = 1920; }

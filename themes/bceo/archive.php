@@ -19,11 +19,21 @@ $all_terms = get_terms($sort_tax, array(
   'hide_empty' => false
 ));
 
+switch ($post_type) {
+  case "projects":
+    $blogClass = "projects";
+    $blogListClass = "projects-list";
+    break;
+  default:
+    $blogClass = "blog";
+    $blogListClass = "blog-list";
+}
+
 get_template_part('template-part-hero', 'archive', $post_type); ?>
 
 <div class="main">
   <div class="row section-faqs justify-content-center my-4 py-4">
-    <div class="col-10 blog its-sortable">
+    <div class="col-10 <?php echo $blogClass; ?> its-sortable">
       <?php if (count($all_terms) > 1): ?>
       <div class="row">
         <nav class="col-12">
@@ -38,41 +48,10 @@ get_template_part('template-part-hero', 'archive', $post_type); ?>
       <?php endif; ?>
 
       <?php if ($all_posts->have_posts()): ?>
-        <div class="row blog-list">
+        <div class="row <?php echo $blogListClass; ?>">
           <?php while ($all_posts->have_posts()): $all_posts->the_post(); 
-            $post_terms = get_the_terms($post, $sort_tax);
-            $nice_terms = [];
-            $class_terms = [];
-            if ($post_terms) {
-              foreach ($post_terms as $post_term) {
-                $nice_terms[] = $post_term->name;
-                $class_terms[] = sprintf('%s-%s', $sort_tax, $post_term->slug);
-              }
-            }
-            
-            $nice_terms = implode(", ", $nice_terms);
-            $class_terms = implode(" ", $class_terms);
-          ?>
-
-            <div class="its-sortable-item <?php echo $class_terms; ?> col-lg-4 col-sm-6 col-12 mb-4">
-              <article class="blog-preview rounded-0 p-2 bg-light">
-                <a href="<?php the_permalink(); ?>"><figure><?php bceo_featured_image(); ?></figure></a>
-                <header class="row no-gutters">
-                  <h5 class="order-3 col-12 mt-1 mb-3"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                  
-                  <div class="meta-fields order-2 col-12">
-                    <p class="meta category"><i class="far fa-folder"></i> <?php echo $nice_terms; ?></p>
-                    <p class="meta date"><i class="far fa-calendar-alt"></i> <?php the_date('F j, Y'); ?></p>
-                  </div>
-                </header>
-
-                <div class="content">
-                  <p><?php the_excerpt(); ?></p>
-                  <p><a href="<?php the_permalink(); ?>" class="view-more-cta">Read More</a></p>
-                </div>
-              </article>
-            </div><!-- .its-sortable-item -->
-          <?php endwhile; ?>
+            get_template_part('template-part', 'sortable-item');
+          endwhile; ?>
         </div>
       <?php endif; ?>
                 

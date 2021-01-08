@@ -24,9 +24,34 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
           <ul class="pre-header-links justify-content-end my-0">
             <li class="text-lowercase divide-after"><a href="#">Employee Portal</a></li>
             
-            <li class="icon"><a href="#"><i class="fab fa-twitter"></i><span class="sr-only">Twitter</span></a></li>
-            <li class="icon"><a href="#"><i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span></a></li>
-            <li class="icon divide-after"><a href="#"><i class="fab fa-instagram"></i><span class="sr-only">Instagram</span></a></li>
+            <?php if (have_rows('social_media', 'option')): 
+            $lastSocialIndex = count(get_field('social_media', 'option'));
+            while(have_rows('social_media', 'option')): the_row();
+              $socialLayout = get_row_layout();
+              switch($socialLayout) {
+                case 'linkedin':
+                  $icon = "fab fa-linkedin";
+                  $url = get_sub_field('url');
+                  $label = "LinkedIn";
+                  break;
+                case 'facebook': 
+                  $icon = "fab fa-facebook-f";
+                  $url = get_sub_field('url');
+                  $label = "Facebook";
+                  break;
+                case 'twitter':
+                case 'instagram':
+                  $icon = sprintf("fab fa-%s", $socialLayout);
+                  $url = sprintf('https://%s.com/%s', $socialLayout, trim(get_sub_field('handle'), ' @\n\r\t\v\0'));
+                  $label = ucfirst($socialLayout);
+                  break;
+                default: 
+                  $url = false;
+              }
+              if ($url) printf('<li class="%s"><a href="%s" target="_blank"><i class="%s"></i><span class="sr-only">%s</span></a></li>', 
+                ($lastSocialIndex === get_row_index()) ? 'icon divide-after' : 'icon', $url, $icon, $label );          
+            ?>
+            <?php endwhile; endif; ?>
             
             <li class="icon search-toggle"><a href="#"><i class="fa fa-search"></i><span class="sr-only">Search</span></a></li>
           </ul>
@@ -37,24 +62,30 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
     
     <div class="branding row justify-content-between align-items-center no-gutters">
       <div class="col-auto">
-        <h1 class="text-hide logo my-0">Butler County Engineer's Office</h1>
+        <?php if ( function_exists( 'the_custom_logo' ) ) the_custom_logo(); ?>
       </div>
       <nav class="col-auto">
         <ul class="branding-links align-items-center">
-          <li class="icon"><a href="mailto:hello@bceo.org" target="_blank">
+          <?php $contactEmail = get_field('contact_email', 'option'); if ($contactEmail): ?>
+          <li class="icon"><a href="<?php printf('mailto:%s', $contactEmail); ?>" target="_blank">
             <strong><i class="far fa-envelope"></i>Email Us</strong>
-            <span class="text-lowercase">hello@bceo.org</span>
+            <span class="text-lowercase"><?php echo $contactEmail; ?></span>
           </a></li>
+          <?php endif; ?>
           
-          <li class="icon">
+          <?php $contactHours = get_field('contact_hours', 'option'); if ($contactHours): ?>
+          <li class="icon"><a href="<?php printf('mailto:%s', $contactEmail); ?>" target="_blank">
             <strong><i class="far fa-clock"></i>Our Hours</strong>
-            M-F 7am-4pm
-          </li>
-          
-          <li><a href="tel:+1-513-867-5744" class="btn btn-primary">
+            <?php echo $contactHours; ?>
+          </a></li>
+          <?php endif; ?>
+
+          <?php $contactPhone = get_field('contact_phone', 'option'); if ($contactPhone): ?>
+          <li><a href="<?php printf('tel:%s', $contactPhone); ?>" class="btn btn-primary">
             <strong>Need to call us?</strong>
             (513) 867-5744
           </a></li>
+          <?php endif; ?>          
         </ul>
       </nav>
     </div>

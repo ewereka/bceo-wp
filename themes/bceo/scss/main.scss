@@ -1,62 +1,16 @@
 @import "includes/bceo_variables";
 @import "vendor/bootstrap/bootstrap.scss";
 
-html {
-  font-size: 16px;
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-body {
-  // background-color: $color_bg_primary;
-  font-size: 1rem;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
-}
+@import "includes/text";
+@import "includes/components/accents";
+@import "includes/components/buttons";
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-@each $color, $value in $colors {
-  .accent-line-#{$color} {
-    &:after {
-      margin: 1.5rem 0;
-      display: block;
-      width: 5rem;
-      height: 0.2rem;
-      content: "";
-      overflow: hidden;
-      background-color: #{$value};
-      text-decoration: none;
-    }
-  }
-}
-
-.btn {
-  &.btn-bceo {
-    font-size: 0.9rem;
-    padding: 0.75rem 0.75rem 0.5rem;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-
-  &.btn-primary {
-    color: $body_bg;
-  }
-
-  &.btn-cta {
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 0;
-
-    &::before {
-      content: ">>";
-    }
-  }
-}
 .pre-header {
   color: $bceo-pre-header-color;
   font-size: 0.75rem;
@@ -396,8 +350,27 @@ h5 {
 
     margin: 0 0 1.5rem;
 
-    &.recent-project {
+    &.projects {
       position: relative;
+      overflow: hidden;
+      
+      figure {
+        margin: 0;
+        > img {
+         width: 100%; height: auto;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0; bottom: 0;
+          left: 0; right: 0;
+          background-color: $black;
+          background-blend-mode: multiply;
+          opacity: 0;
+          transition: all 0.3s ease-in-out;
+        }
+      }
 
       .overlay {
         position: absolute;
@@ -408,7 +381,9 @@ h5 {
         align-items: center;
         padding: 10px;
         display: flex;
-        background-color: rgba($white, 0.4);
+        background-color: rgba($white, 0.5);
+        transform: translateY(100%);
+        transition: all 0.3s ease-in-out;
 
         h5 {
           font-size: 0.9rem;
@@ -427,6 +402,18 @@ h5 {
             font-size: 0.7rem !important;
             margin: 0;
           }
+        }
+      }
+
+      > a:hover {
+        figure {
+          &::after {
+            opacity: 0.5;
+          }
+        }
+        .overlay {
+          transform: none;
+          z-index: 2;
         }
       }
     }
@@ -458,9 +445,37 @@ h5 {
 }
 
 .section-numbers {
-  .numbers-placeholder {
-    width: 80%;
-    margin: 2rem auto 0;
+  
+}
+
+.number-blocks {
+  &--block {
+    text-transform: uppercase;
+    line-height: 1.2;
+
+    &--icon {
+      max-width: 120px;
+      height: auto;
+      margin: 0 auto;
+    }
+    &--number {
+      font-size: 3.5rem;
+      font-weight: bold;
+      display: block;
+    }
+    &--title {
+      font-size: 1.5rem;
+      font-weight: normal;
+      display: block;
+      height: 3.5em;
+    }
+  }
+
+  &.animated {
+    .number-blocks--block--number,
+    .number-blocks--block--title {
+      animation: fadeIn ease-in 2s;
+    }
   }
 }
 
@@ -484,6 +499,19 @@ h5 {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+  }
+
+  .social-icons {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      margin: 0 .5rem; padding: 0;
+      font-size: 2rem;
+    }
   }
 }
 

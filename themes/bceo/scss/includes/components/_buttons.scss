@@ -1,0 +1,144 @@
+.btn {
+  &.btn-bceo {
+    font-size: 0.9rem;
+    padding: 0.75rem 0.75rem 0.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  &.btn-primary {
+    color: $body_bg;
+  }
+
+  &.btn-cta {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0;
+
+    &::before {
+      content: ">>";
+    }
+  }
+}
+
+.wp-block-buttons {
+  .wp-block-button {
+    .wp-block-button__link {
+      display: inline-block;
+      font-family: $btn-font-family;
+      font-weight: $btn-font-weight;
+      color: $body-color;
+      text-align: center;
+      text-decoration: if($link-decoration == none, null, none);
+      white-space: $btn-white-space;
+      vertical-align: middle;
+      user-select: none;
+      background-color: transparent;
+      border: $btn-border-width solid transparent;
+      @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+      @include transition($btn-transition);
+    
+      @include hover() {
+        color: $body-color;
+        text-decoration: none;
+      }
+      
+      &:focus,
+      &.focus {
+        outline: 0;
+        box-shadow: $btn-focus-box-shadow;
+      }
+      
+      // Disabled comes first so active can properly restyle
+      &.disabled,
+      &:disabled {
+        opacity: $btn-disabled-opacity;
+        @include box-shadow(none);
+      }
+      
+      &:not(:disabled):not(.disabled) {
+        cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+    
+        &:active,
+        &.active {
+          @include box-shadow($btn-active-box-shadow);
+    
+          &:focus {
+            @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+          }
+        }
+      }
+    }
+
+    &,
+    &.is-style-primary {
+      .wp-block-button__link {
+        @include button-variant($primary, $primary);
+        border-color: transparent;
+        color: $white;
+        &:hover, &:active {
+          color: $white;
+        }
+      }
+    }
+
+    &.is-style-outline-primary {
+      .wp-block-button__link {
+        @include button-outline-variant($primary);
+        color: $primary;
+        background-color: transparent;
+        &:hover, &:active {
+          color: $white;
+        }
+      }
+    }
+
+    &.is-style-secondary {
+      .wp-block-button__link {
+        @include button-variant($secondary, $secondary);
+        border-color: transparent;
+        color: $white;
+        &:hover, &:active {
+          color: $white;
+        }
+      }
+    }
+
+    &.is-style-outline-secondary {
+      .wp-block-button__link {
+        @include button-outline-variant($secondary);
+        color: $secondary;
+        background-color: transparent;
+        &:hover, &:active {
+          color: $white;
+        }
+      }
+    }
+
+    &.is-style-info {
+      .wp-block-button__link {
+        @include button-variant($warning, $warning);
+      }
+    }
+
+    &.is-style-outline-info {
+      .wp-block-button__link {
+        @include button-outline-variant($warning);
+        background-color: transparent;
+      }
+    }
+
+    &.is-style-dark {
+      .wp-block-button__link {
+        @include button-variant($gray-900, $gray-900);
+      }
+    }
+
+    &.is-style-outline-dark {
+      .wp-block-button__link {
+        @include button-outline-variant($gray-900);
+        background-color: transparent;
+      }
+    }
+  }
+}
