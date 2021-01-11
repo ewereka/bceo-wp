@@ -1,0 +1,30 @@
+.number-blocks {
+  &--block {
+    text-transform: uppercase;
+    line-height: 1.2;
+
+    &--icon {
+      max-width: 120px;
+      height: auto;
+      margin: 0 auto;
+    }
+    &--number {
+      font-size: 3.5rem;
+      font-weight: bold;
+      display: block;
+    }
+    &--title {
+      font-size: 1.5rem;
+      font-weight: normal;
+      display: block;
+      height: 3.5em;
+    }
+  }
+
+  &.animated {
+    .number-blocks--block--number,
+    .number-blocks--block--title {
+      animation: fadeIn ease-in 2s;
+    }
+  }
+}

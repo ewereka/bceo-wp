@@ -3,6 +3,7 @@ require_once (dirname(__FILE__) . '/inc/class.wp-bootstrap-navwalker.php');
 require_once (dirname(__FILE__) . "/inc/_inc_helpers.php");
 require_once (dirname(__FILE__) . "/inc/_inc_gutenberg_mods.php");
 require_once (dirname(__FILE__) . "/inc/_inc_image_sizes.php");
+require_once (dirname(__FILE__) . "/inc/_inc_shortcodes.php");
 
 add_action( 'after_setup_theme', 'ewereka_setup' );
 function ewereka_setup() {

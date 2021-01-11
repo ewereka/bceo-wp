@@ -128,19 +128,10 @@ get_header(); ?>
     </div>
   </div>
 
-  <div class="row section-faq no-gutters">
-    <div class="col-12 text-dark">
-      <div class="content justify-content-center">
-        <figure class="faq-placeholder my-0">
-          <a href="/faq"><img src="<?php theme_asset('img/placeholders/faq.jpg'); ?>" class="img-fluid my-0"></a>
-        </figure>
-      </div>
-      </div>
-    </div>
-  </div>
+  <?php get_template_part('template-part', 'faq-cta'); ?>
+  <?php get_template_part('template-part', 'by-the-numbers'); ?>
+  <?php get_template_part('template-part', 'recent-projects'); ?>
 </div>
 
-<?php get_template_part('template-part', 'by-the-numbers'); ?>
-<?php get_template_part('template-part', 'recent-projects'); ?>
 
 <?php get_footer(); ?>

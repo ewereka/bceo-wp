@@ -19,6 +19,13 @@
       content: ">>";
     }
   }
+
+  &.btn-faq-cta {
+    @include font-size($h2-font-size);
+    text-transform: uppercase;
+    padding: 1rem;
+
+  }
 }
 
 .wp-block-buttons {

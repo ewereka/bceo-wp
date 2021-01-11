@@ -10,6 +10,7 @@
 @import "includes/text";
 @import "includes/components/accents";
 @import "includes/components/buttons";
+@import "includes/components/number_blocks";
 
 .pre-header {
   color: $bceo-pre-header-color;
@@ -444,39 +445,12 @@
   }
 }
 
-.section-numbers {
-  
-}
 
-.number-blocks {
-  &--block {
-    text-transform: uppercase;
-    line-height: 1.2;
-
-    &--icon {
-      max-width: 120px;
-      height: auto;
-      margin: 0 auto;
-    }
-    &--number {
-      font-size: 3.5rem;
-      font-weight: bold;
-      display: block;
-    }
-    &--title {
-      font-size: 1.5rem;
-      font-weight: normal;
-      display: block;
-      height: 3.5em;
-    }
-  }
-
-  &.animated {
-    .number-blocks--block--number,
-    .number-blocks--block--title {
-      animation: fadeIn ease-in 2s;
-    }
-  }
+.section-faq-cta {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 
 .section-recent-projects {
