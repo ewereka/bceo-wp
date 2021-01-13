@@ -205,6 +205,7 @@
         top: 100%;
         left: 0;
         width: 15rem;
+        z-index: 2;
 
         li {
           display: block;
@@ -320,9 +321,6 @@
       left: 3rem;
       display: block;
     }
-  }
-
-  .ads-wrapper {
   }
 }
 
@@ -590,9 +588,6 @@
 }
 
 .blog {
-  .blog-preview {
-  }
-
   .meta-fields {
     display: flex;
     justify-content: left;
@@ -660,5 +655,31 @@
     width: 30px;
     height: 32px;
     line-height: 32px;
+  }
+}
+
+.after-single-navigation {
+  display: flex;
+  overflow: visible;
+  a {
+    background-color: $bceo-orange;
+    color: $white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: .5rem;
+    text-decoration: none;
+
+    &[rel=prev] {
+      &::before {
+        content: '\00AB ';
+      }
+    }
+    &[rel=next] {
+      margin-left: auto;
+
+      &::after {
+        content: ' \00BB';
+      }
+    }
   }
 }

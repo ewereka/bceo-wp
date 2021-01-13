@@ -68,6 +68,8 @@
   </div>
 </footer>
 
+<a href="#" class="btn btn-primary btn-back-to-top" rel="nofollow"></a>
+
 <?php wp_footer(); ?>
 </body>
 </html>

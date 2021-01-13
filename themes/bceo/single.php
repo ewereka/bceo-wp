@@ -3,23 +3,22 @@
  * @package bceo-wp
  * @since bceo-wp 1.0.0
  */
-get_header(); ?>
-
-<?php // page_hero('News Release', 'img/photos/blog-hero.jpg'); ?>
+get_header();
+get_template_part('template-part-hero', $post_type); ?>
 
 <div class="main">
+<?php if (have_posts()): while(have_posts()): the_post(); 
+  $post_categories = get_the_category();
+  $nice_categories = [];
+  foreach ($post_categories as $post_category) {
+    $nice_categories[] = $post_category->name;
+  }
+  $nice_categories = implode(", ", $nice_categories);
+?>
   <div class="row section-blog-post justify-content-center my-4 py-4">
     <div class="col-11 col-lg-10">
       <div class="row blog">
         <div class="col-12 col-md-8 col-lg-9">
-          <?php if (have_posts()): while(have_posts()): the_post(); 
-            $post_categories = get_the_category();
-            $nice_categories = [];
-            foreach ($post_categories as $post_category) {
-              $nice_categories[] = $post_category->name;
-            }
-            $nice_categories = implode(", ", $nice_categories);
-          ?>
             <article <?php post_class('blog-post'); ?>>
               
               <header class="entry-header">
@@ -47,7 +46,6 @@ get_header(); ?>
                   </ul>
                 </div>
             </article>
-          <?php endwhile; endif; ?>
         </div>
 
         <div class="d-none d-md-block col-md-4 col-lg-3">
@@ -59,6 +57,22 @@ get_header(); ?>
       </div>
     </div>
   </div>
+
+  
+  <?php endwhile; ?>
+  <div class="after-single-navigation">
+    <?php
+      previous_post_link( '%link', __( '<span class="meta-nav prev">Previous</span>', 'twentyfourteen' ) );
+      next_post_link( '%link', __( '<span class="meta-nav next">Next</span>', 'twentyfourteen' ) );
+    ?>
+  </div>
+  <?php endif; ?>
+
+  <div class="bg-light">
+  <?php get_template_part('template-part', 'recent-news'); ?>
+  </div>
 </div>
 
+
 <?php get_footer(); ?>
+

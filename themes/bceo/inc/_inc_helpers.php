@@ -90,10 +90,15 @@ function get_default_header_image() {
   return $image;
 }
 
-function get_page_header_image() {
+function get_page_header_image($use_custom = true) {
   global $post;
-  $image = null;
-  if (has_post_thumbnail()) $image = get_post_thumbnail_id();
+  if ($use_custom) {
+    $image = get_field('header_image');
+  } else {
+    $image = (has_post_thumbnail()) ? get_post_thumbnail_id() : null;
+  }
+  
+  $image = ($image) ? $image : null;
 
   return $image;
 }
