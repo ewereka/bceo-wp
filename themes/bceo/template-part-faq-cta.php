@@ -12,7 +12,9 @@ if ($enabled):
     if ($bg) {
       $bgArray = wp_get_attachment_image_src($bg, 'full');
     }
-    $bgStyle = ($bg && $bgArray) ? sprintf('style="background-image: url(\'%s\'); padding-top: 6rem; padding-bottom: 6rem;"', $bgArray[0]) : 'style="padding-top: 6rem; padding-bottom: 6rem;"';
+    $bgAttr = 'style="padding-top: 6rem; padding-bottom: 6rem;"';
+    $bgAttr .= ($bg && $bgArray) ? sprintf('data-parallax="scroll" data-speed="0.75" data-image-src="%s"', $bgArray[0]) : '';
+    $bgClass = ($bg && $bgArray) ? ' parallax-window' : '';
 
     switch ($color) {
       case "orange":
@@ -31,7 +33,8 @@ if ($enabled):
 
     $link_tag = sprintf('<a href="%s" target="%s" class="btn btn-faq-cta btn-block %s"><i class="far fa-question-circle mr-2" role="img"></i>%s</a>', esc_attr($link_url), esc_attr($link_target), $btnClass, esc_html($link_title));
 ?>
-  <div class="row section-faq-cta no-gutters justify-content-center" <?php echo $bgStyle; ?>>
+  <br>
+  <div class="row section-faq-cta no-gutters justify-content-center<?php echo $bgClass; ?>" <?php echo $bgAttr; ?>>
     <div class="col-12 col-lg-10 col-xl-8 padded-area">
       <?php echo $link_tag; ?>
     </div>

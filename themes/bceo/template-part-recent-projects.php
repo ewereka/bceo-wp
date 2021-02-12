@@ -17,7 +17,7 @@ $projectCount = 0;
 // The Loop
 if ( $recentProjects->have_posts() ): ?>
 <div class="row section-recent-projects no-gutters">
-  <div class="col-12 recent-projects-wrapper bg-dark text-light padded-area">
+  <div class="col-12 recent-projects-wrapper bg-dark text-light padded-area parallax">
     <header>
       <h2 class="accent-line-yellow">Recent Projects</h2>
     </header>

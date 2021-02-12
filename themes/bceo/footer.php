@@ -44,6 +44,11 @@
             $url = get_sub_field('url');
             $label = "LinkedIn";
             break;
+          case 'youtube':
+            $icon = "fab fa-youtube";
+            $url = get_sub_field('url');
+            $label = "YouTube";
+            break;
           case 'facebook': 
             $icon = "fab fa-facebook-f";
             $url = get_sub_field('url');
@@ -66,9 +71,15 @@
       <?php endif; ?>
     </div>
   </div>
+  <div class="sub-footer row bg-warning text-dark">
+    <div class="col-auto"><a href="#" class="text-dark text-lowercase"><small><?php _e('Employee Portal', 'com.ewereka.bceo.theme'); ?></small></a></a>
+  </div>
 </footer>
 
-<a href="#" class="btn btn-primary btn-back-to-top" rel="nofollow"></a>
+<a href="#" class="btn btn-primary btn-back-to-top" rel="nofollow">
+  <i class="fas fa-chevron-up" role="img"></i>
+  <span class="sr-only">Back to Top</a>
+</a>
 
 <?php wp_footer(); ?>
 </body>

@@ -21,9 +21,7 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
         </div>
         
         <nav class="col-auto">
-          <ul class="pre-header-links justify-content-end my-0">
-            <li class="text-lowercase divide-after"><a href="#">Employee Portal</a></li>
-            
+          <ul class="pre-header-links justify-content-end my-0">            
             <?php if (have_rows('social_media', 'option')): 
             $lastSocialIndex = count(get_field('social_media', 'option'));
             while(have_rows('social_media', 'option')): the_row();
@@ -33,6 +31,11 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
                   $icon = "fab fa-linkedin";
                   $url = get_sub_field('url');
                   $label = "LinkedIn";
+                  break;
+                case 'youtube':
+                  $icon = "fab fa-youtube";
+                  $url = get_sub_field('url');
+                  $label = "YouTube";
                   break;
                 case 'facebook': 
                   $icon = "fab fa-facebook-f";
@@ -91,7 +94,7 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
     </div>
     
     <div class="main-nav row no-gutters">
-      <nav class="col-11">
+      <nav class="col-12 col-xl-11">
       <?php 
         wp_nav_menu( array(
           'theme_location'  => 'main-menu',

@@ -39,6 +39,7 @@ var paths = {
   scripts: {
     vendor: [
       themeFolder + jsFolder + vendorFolder + "jquery/jquery.js",
+      themeFolder + jsFolder + vendorFolder + "jquery-parallax/parallax.js",
       themeFolder + jsFolder + vendorFolder + "popper/umd/popper.js",
       themeFolder + jsFolder + vendorFolder + "bootstrap/bootstrap.js",
     ],
@@ -104,6 +105,13 @@ const vendor_jquery_scripts = () => {
   "use strict";
   return src(nodeModules + "jquery/dist/**/*.*").pipe(
     dest(themeFolder + jsFolder + vendorFolder + "jquery")
+  );
+};
+
+const vendor_parallax_scripts = () => {
+  "use strict";
+  return src(nodeModules + "jquery-parallax.js/*.js").pipe(
+    dest(themeFolder + jsFolder + vendorFolder + "jquery-parallax")
   );
 };
 
@@ -229,6 +237,7 @@ const clean = parallel(clean_styles, clean_scripts /*, clean_images*/);
 const move_styles = parallel(vendor_fontawesome, vendor_bootstrap_styles);
 const move_scripts = parallel(
   vendor_jquery_scripts,
+  vendor_parallax_scripts,
   vendor_popper_scripts,
   vendor_bootstrap_scripts
 );

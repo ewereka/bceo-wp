@@ -67,6 +67,8 @@ $(function () {
 
   var $win = $(window);
   var $numberBlocks = $(".number-blocks:not(.animated)").addClass('can-animate');
+  var $mainNav = $(".main-nav").eq(0);
+  var mainNavSticky = $mainNav.offset().top;
 
   $win.on('scroll', (e) => {
     $numberBlocks.each((i, el) => {
@@ -76,5 +78,13 @@ $(function () {
         animateNumberBlocks($el);
       }
     });
+    console.log(mainNavSticky);
+    if ($mainNav) {
+      if (window.pageYOffset >= mainNavSticky) {
+        $mainNav.addClass("sticky")
+      } else {
+        $mainNav.removeClass("sticky");
+      }
+    }
   }).trigger('scroll');
 });
