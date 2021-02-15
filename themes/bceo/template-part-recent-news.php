@@ -61,7 +61,7 @@ if ($newsEnabled && $recentNews->have_posts()): ?>
       </div>
     </div>
     <footer class="text-right">
-      <a href="/news" class="view-more-cta"><?php _e('View More', 'com.ewereka.bceo.theme'); ?></a>
+      <a href="<?php echo get_post_type_archive_link('post'); ?>" class="view-more-cta"><?php _e('View More', 'com.ewereka.bceo.theme'); ?></a>
     </footer>
   </div>
 
@@ -78,7 +78,7 @@ if ($newsEnabled && $recentNews->have_posts()): ?>
     </div>
 
     <footer class="text-left">
-      <a href="#" class="view-more-cta"><?php _e('View More', 'com.ewereka.bceo.theme'); ?>-</a>
+      <a href="<?php echo get_post_type_archive_link('post'); ?>?sort=announcements" class="view-more-cta"><?php _e('View More', 'com.ewereka.bceo.theme'); ?></a>
     </footer>
   </div>
   <?php endif; ?>

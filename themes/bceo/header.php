@@ -63,12 +63,12 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
       </div>
     </div>
     
-    <div class="branding row justify-content-between align-items-center no-gutters">
+    <div class="branding row justify-content-between align-items-top no-gutters">
       <div class="col-auto">
         <?php if ( function_exists( 'the_custom_logo' ) ) the_custom_logo(); ?>
       </div>
       <nav class="col-auto">
-        <ul class="branding-links align-items-center">
+        <ul class="branding-links align-items-top">
           <?php $contactEmail = get_field('contact_email', 'option'); if ($contactEmail): ?>
           <li class="icon"><a href="<?php printf('mailto:%s', $contactEmail); ?>" target="_blank">
             <strong><i class="far fa-envelope"></i>Email Us</strong>
@@ -85,7 +85,7 @@ setlocale(LC_MONETARY, 'en_US'); ?><!DOCTYPE html>
 
           <?php $contactPhone = get_field('contact_phone', 'option'); if ($contactPhone): ?>
           <li><a href="<?php printf('tel:%s', $contactPhone); ?>" class="btn btn-primary">
-            <strong>Need to call us?</strong>
+            <strong><i class="fas fa-phone-alt"></i> Need to call us?</strong>
             (513) 867-5744
           </a></li>
           <?php endif; ?>          

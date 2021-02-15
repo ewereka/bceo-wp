@@ -1,5 +1,5 @@
 <footer class="site-footer container-fluid text-white">
-  <div class="row padded-area align-items-center">
+  <div class="row padded-area align-items-top">
     <div class="col-12 col-lg-3">
       <?php if ( function_exists( 'the_custom_logo' ) ) the_custom_logo(); ?>
     </div>
@@ -71,14 +71,14 @@
       <?php endif; ?>
     </div>
   </div>
-  <div class="sub-footer row bg-warning text-dark">
+  <div class="sub-footer row px-5 bg-warning text-dark">
     <div class="col-auto"><a href="#" class="text-dark text-lowercase"><small><?php _e('Employee Portal', 'com.ewereka.bceo.theme'); ?></small></a></a>
   </div>
 </footer>
 
 <a href="#" class="btn btn-primary btn-back-to-top" rel="nofollow">
   <i class="fas fa-chevron-up" role="img"></i>
-  <span class="sr-only">Back to Top</a>
+  <span class="hover-text">Back to Top</a>
 </a>
 
 <?php wp_footer(); ?>

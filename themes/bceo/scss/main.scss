@@ -324,6 +324,18 @@
   }
 }
 
+.section-numbers { 
+  .entry-content & {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .padded-area {
+    padding-bottom: 1.5rem !important;
+  }
+}
+
+
 .meta {
   margin: 0.25rem 0;
   font-weight: 800;
@@ -336,7 +348,8 @@
     color: $primary;
 
     &::after {
-      content: " >>";
+      content: "\00BB";
+      font-size: 1.2em;
     }
   }
 }
@@ -427,7 +440,8 @@
   text-decoration: none !important;
 
   &::after {
-    content: " >>";
+    content: "\00BB";
+    font-size: 1.2em;
   }
 
   &:hover {
@@ -674,14 +688,18 @@
 
     &[rel=prev] {
       &::before {
-        content: '\00AB ';
+        content: '\00AB';
+        font-size: 1.2em;
+        margin-right: 10px;
       }
     }
     &[rel=next] {
       margin-left: auto;
 
       &::after {
-        content: ' \00BB';
+        content: '\00BB';
+        font-size: 1.2em;
+        margin-left: 10px;
       }
     }
   }
@@ -695,9 +713,23 @@
     position: fixed;
     z-index: 20;
     bottom: 0; right: 0;
-    width: 50px; height: 50px;
-    display: block;
-    font-size: 1.5rem;    
+    display: inline-block;
+    font-size: 1.5rem;
+    box-shadow: 0 0 10px $black;
+    padding: 10px 15px;
+
+    i {
+      display: inline-block;
+    }
+    .hover-text {
+      display: none;
+    }
+
+    &:hover, &:active {
+      .hover-text {
+        display: inline-block;
+      }
+    }
   }
 }
 

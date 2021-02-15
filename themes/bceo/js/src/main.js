@@ -47,22 +47,24 @@ $(function () {
     var $parent = $(this);
     var $sorter = $parent.find(".its-sortable-nav");
     var prefix = $parent.data("its-sortable-prefix") || "category";
-
-    $sorter.find(".its-sortable-link").on("click", function (e) {
+    var $sorterLinks = $sorter.find(".its-sortable-link");
+    $sorterLinks.on("click", function (e) {
       e.preventDefault();
       var $this = $(this);
+      
+      $sorterLinks.removeClass('active');
+      $this.addClass('active');
 
       var term = $this.data("its-sortable-term");
       if (term === "*") {
         $parent.find(".its-sortable-item").fadeIn(100);
       } else {
-        console.log(".its-sortable-item:not(." + prefix + "-" + term + ")");
         $parent
           .find(".its-sortable-item:not(." + prefix + "-" + term + ")")
-          .fadeOut(100);
+          .fadeOut(100)
         $parent.find(".its-sortable-item." + prefix + "-" + term).fadeIn(100);
       }
-    });
+    }).filter('.active').trigger('click');
   });
 
   var $win = $(window);
