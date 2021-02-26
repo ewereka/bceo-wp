@@ -24,7 +24,6 @@
     @include font-size($h2-font-size);
     text-transform: uppercase;
     padding: 1rem;
-
   }
 }
 
@@ -42,34 +41,40 @@
       user-select: none;
       background-color: transparent;
       border: $btn-border-width solid transparent;
-      @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+      @include button-size(
+        $btn-padding-y,
+        $btn-padding-x,
+        $btn-font-size,
+        $btn-line-height,
+        $btn-border-radius
+      );
       @include transition($btn-transition);
-    
+
       @include hover() {
         color: $body-color;
         text-decoration: none;
       }
-      
+
       &:focus,
       &.focus {
         outline: 0;
         box-shadow: $btn-focus-box-shadow;
       }
-      
+
       // Disabled comes first so active can properly restyle
       &.disabled,
       &:disabled {
         opacity: $btn-disabled-opacity;
         @include box-shadow(none);
       }
-      
+
       &:not(:disabled):not(.disabled) {
         cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
-    
+
         &:active,
         &.active {
           @include box-shadow($btn-active-box-shadow);
-    
+
           &:focus {
             @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
           }
@@ -83,7 +88,8 @@
         @include button-variant($primary, $primary);
         border-color: transparent;
         color: $white;
-        &:hover, &:active {
+        &:hover,
+        &:active {
           color: $white;
         }
       }
@@ -94,7 +100,8 @@
         @include button-outline-variant($primary);
         color: $primary;
         background-color: transparent;
-        &:hover, &:active {
+        &:hover,
+        &:active {
           color: $white;
         }
       }
@@ -105,7 +112,8 @@
         @include button-variant($secondary, $secondary);
         border-color: transparent;
         color: $white;
-        &:hover, &:active {
+        &:hover,
+        &:active {
           color: $white;
         }
       }
@@ -116,7 +124,8 @@
         @include button-outline-variant($secondary);
         color: $secondary;
         background-color: transparent;
-        &:hover, &:active {
+        &:hover,
+        &:active {
           color: $white;
         }
       }

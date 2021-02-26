@@ -1,10 +1,13 @@
 @import "includes/bceo_variables";
 @import "vendor/bootstrap/bootstrap.scss";
 
-
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @import "includes/text";
@@ -218,9 +221,10 @@
 
       &.menu-item-has-children {
         > a::after {
-          content: ' \f0dd';
-          font-family: 'Font Awesome 5 Free';
-          font-size: 14px; line-height: 17px;
+          content: " \f0dd";
+          font-family: "Font Awesome 5 Free";
+          font-size: 14px;
+          line-height: 17px;
           vertical-align: top;
         }
       }
@@ -235,7 +239,8 @@
 }
 
 /** Hero */
-.hero-slider, .hero {
+.hero-slider,
+.hero {
   margin-top: -1.6rem;
 }
 .hero {
@@ -257,7 +262,7 @@
 }
 
 .page-hero {
-  min-height: 250px;
+  min-height: 350px;
   margin-top: -1.6rem;
 
   background-repeat: no-repeat;
@@ -324,7 +329,7 @@
   }
 }
 
-.section-numbers { 
+.section-numbers {
   .entry-content & {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
@@ -334,7 +339,6 @@
     padding-bottom: 1.5rem !important;
   }
 }
-
 
 .meta {
   margin: 0.25rem 0;
@@ -365,18 +369,21 @@
     &.projects {
       position: relative;
       overflow: hidden;
-      
+
       figure {
         margin: 0;
         > img {
-         width: 100%; height: auto;
+          width: 100%;
+          height: auto;
         }
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
-          top: 0; bottom: 0;
-          left: 0; right: 0;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
           background-color: $black;
           background-blend-mode: multiply;
           opacity: 0;
@@ -457,7 +464,6 @@
   }
 }
 
-
 .section-faq-cta {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -494,13 +500,60 @@
 
     li {
       display: block;
-      margin: 0 .5rem; padding: 0;
+      margin: 0 0.5rem;
+      padding: 0;
       font-size: 2rem;
     }
   }
 
   .sub-footer {
-    padding: .5rem 0;
+    padding: 0.5rem 0;
+  }
+}
+.entry-content {
+  .c-accordion {
+    &__item {
+      margin: 1rem 0;
+      .c-accordion__title {
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 2rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        outline: none;
+        @include button-variant($primary, $primary);
+        color: $white;
+        padding: $btn-padding-y $btn-padding-x;
+
+        &::before {
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          content: "\f068 ";
+          font-size: 0.7em;
+          line-height: inherit;
+          margin-right: 0.5rem;
+        }
+
+        &::after {
+          content: none;
+          display: none;
+        }
+      }
+
+      .c-accordion__content {
+        padding: 1rem;
+        background-color: $light;
+      }
+
+      &.is-open {
+        .c-accordion__title {
+          &::before {
+            content: "\f067";
+          }
+        }
+      }
+    }
   }
 }
 
@@ -512,6 +565,7 @@
       line-height: 2rem;
       display: flex;
       align-items: center;
+
       &::before {
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
@@ -683,21 +737,21 @@
     color: $white;
     font-weight: bold;
     font-size: 1.5rem;
-    padding: .5rem;
+    padding: 0.5rem;
     text-decoration: none;
 
-    &[rel=prev] {
+    &[rel="prev"] {
       &::before {
-        content: '\00AB';
+        content: "\00AB";
         font-size: 1.2em;
         margin-right: 10px;
       }
     }
-    &[rel=next] {
+    &[rel="next"] {
       margin-left: auto;
 
       &::after {
-        content: '\00BB';
+        content: "\00BB";
         font-size: 1.2em;
         margin-left: 10px;
       }
@@ -705,14 +759,14 @@
   }
 }
 
-
 /** Buttons **/
 .btn {
   &-back-to-top {
     border-radius: 0;
     position: fixed;
     z-index: 20;
-    bottom: 0; right: 0;
+    bottom: 0;
+    right: 0;
     display: inline-block;
     font-size: 1.5rem;
     box-shadow: 0 0 10px $black;
@@ -725,7 +779,8 @@
       display: none;
     }
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
       .hover-text {
         display: inline-block;
       }
@@ -737,14 +792,15 @@
   position: relative;
   z-index: 2;
 
-
   .main-nav {
     &.sticky {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 10;
     }
-  }    
+  }
 }
 
 body.admin-bar {
@@ -761,4 +817,7 @@ body.admin-bar {
   background-attachment: fixed;
   background-size: cover;
   background-position: 50% 50%;
+}
+
+.footer-widget-area {
 }

@@ -5,12 +5,14 @@
  */
 get_header(); ?>
 
-<?php get_template_part('template-part', 'hero-slider'); ?>
+<?php get_template_part("partials/hero-slider"); ?>
 
 <div class="main">
   <!-- <div class="row section-projects no-gutters">
     <div class="col-7 map-wrapper padded-area">
-      <figure class="map"><img class="img-fluid" src="<?php theme_asset('img/map/static.jpg'); ?>"></figure>
+      <figure class="map"><img class="img-fluid" src="<?php theme_asset(
+        "img/map/static.jpg"
+      ); ?>"></figure>
       <a href="#"><h2 class="text-light">Interactive Project Map</h2></a>
     </div>
     <div class="col-5 info-wrapper padded-area">
@@ -27,11 +29,12 @@ get_header(); ?>
     </div>
   </div> -->
   
-  <?php get_template_part('template-part', 'recent-news'); ?>
-  <?php get_template_part('template-part', 'faq-cta'); ?>
-  <?php get_template_part('template-part', 'by-the-numbers'); ?>
-  <?php get_template_part('template-part', 'recent-projects'); ?>
+  <?php get_template_part("partials/recent-news"); ?>
+  <?php get_template_part("partials/faq-cta"); ?>
+  <?php get_template_part("partials/by-the-numbers"); ?>
+  <?php get_template_part("partials/recent-projects"); ?>
 </div>
 
 
-<?php get_footer(); ?>
+<?php get_footer();
+?>

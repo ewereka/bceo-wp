@@ -9,4 +9,5 @@ get_header(); ?>
 index.php
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer();
+?>

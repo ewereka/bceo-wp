@@ -3,27 +3,27 @@
  * @package bceo-wp
  * @since bceo-wp 1.0.0
  */
-get_header(); 
+get_header();
 $validSort = false;
-$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : null;
+$sort = isset($_REQUEST["sort"]) ? $_REQUEST["sort"] : null;
 
-$post_type = $post_type ? $post_type : 'post';
+$post_type = $post_type ? $post_type : "post";
 
-$all_posts = new WP_Query(
-  array(
-      'posts_per_page' => -1,
-      'post_type' => $post_type
-  )
-);
+$all_posts = new WP_Query([
+  "posts_per_page" => -1,
+  "post_type" => $post_type,
+]);
 
 $sort_tax = get_sort_taxonomy($post_type);
-$all_terms = get_terms($sort_tax, array(
-  'hide_empty' => false
-));
+$all_terms = get_terms($sort_tax, [
+  "hide_empty" => false,
+]);
 
-if (count($all_terms) > 1) foreach ($all_terms as $term) {
-  if ($sort === $term->slug) {
-    $validSort = true;
+if (count($all_terms) > 1) {
+  foreach ($all_terms as $term) {
+    if ($sort === $term->slug) {
+      $validSort = true;
+    }
   }
 }
 
@@ -37,18 +37,31 @@ switch ($post_type) {
     $blogListClass = "blog-list";
 }
 
-get_template_part('template-part-hero', 'archive', $post_type); ?>
+get_template_part("partials/hero", "archive", $post_type);
+?>
 
 <div class="main">
+<?php if (is_tax()) {
+  echo "<h1>tax page</h1>";
+} ?>
   <div class="row section-faqs justify-content-center my-4 py-4">
     <div class="col-10 <?php echo $blogClass; ?> its-sortable">
       <?php if (count($all_terms) > 1): ?>
       <div class="row">
         <nav class="col-12">
           <ul class="nav nav-sorter its-sortable-nav" data-its-sortable-prefix="<?php echo $sort_tax; ?>">
-            <li class="nav-item"><a href="#" class="its-sortable-link nav-link<?php if (!$validSort) echo " active"; ?>" data-its-sortable-term="*">All Posts</a></li>
+            <li class="nav-item"><a href="#" class="its-sortable-link nav-link<?php if (
+              !$validSort
+            ) {
+              echo " active";
+            } ?>" data-its-sortable-term="*">All Posts</a></li>
             <?php foreach ($all_terms as $sort_term): ?>
-            <li class="nav-item"><a href="#" class="its-sortable-link nav-link<?php if ($validSort && $sort === $sort_term->slug) echo " active"; ?>" data-its-sortable-term="<?php echo $sort_term->slug; ?>"><?php echo $sort_term->name; ?></a></li>
+            <li class="nav-item"><a href="#" class="its-sortable-link nav-link<?php if (
+              $validSort &&
+              $sort === $sort_term->slug
+            ) {
+              echo " active";
+            } ?>" data-its-sortable-term="<?php echo $sort_term->slug; ?>"><?php echo $sort_term->name; ?></a></li>
             <?php endforeach; ?>
           </ul>
         </nav>
@@ -57,15 +70,17 @@ get_template_part('template-part-hero', 'archive', $post_type); ?>
 
       <?php if ($all_posts->have_posts()): ?>
         <div class="row <?php echo $blogListClass; ?>">
-          <?php while ($all_posts->have_posts()): $all_posts->the_post(); 
-            get_template_part('template-part', 'sortable-item');
+          <?php while ($all_posts->have_posts()):
+            $all_posts->the_post();
+            get_template_part("partials/sortable-item");
           endwhile; ?>
         </div>
       <?php endif; ?>
-                
+      
       </div>
     </div>
   </div>
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer();
+?>

@@ -3,15 +3,14 @@
  * @package bceo-wp
  * @since bceo-wp 1.0.0
  */
-get_header(); 
+get_header();
 
-$collections = get_terms( array(
+$collections = get_terms([
   "taxonomy" => "collection",
-) );
+]);
 $expanded = true;
 
-get_template_part('template-part-hero', 'archive', $post_type);
-
+get_template_part("partials/hero", "archive", $post_type);
 ?>
   <div class="main">
     <div class="row section-faqs justify-content-center my-4 py-4">
@@ -19,30 +18,34 @@ get_template_part('template-part-hero', 'archive', $post_type);
         <h2 class="p-2 text-center bg-warning text-dark"><i class="far fa-question-circle"></i> Frequently Asked Questions</h2>
 
         <div class="accordion" id="faqsAccordion">
-          <?php foreach($collections as $collection): 
-            $faqs = new WP_Query(
-              array(
-                  'posts_per_page' => -1,
-                  'post_type' => 'faq',
-                  'tax_query' => array(
-                      array(
-                          'taxonomy' => 'collection',
-                          'field' => 'slug',
-                          'terms' => $collection->slug,
-                      )
-                  )
-              )
-            );  
+          <?php
+          foreach ($collections as $collection):
+            $faqs = new WP_Query([
+              "posts_per_page" => -1,
+              "post_type" => "faq",
+              "tax_query" => [
+                [
+                  "taxonomy" => "collection",
+                  "field" => "slug",
+                  "terms" => $collection->slug,
+                ],
+              ],
+            ]);
 
             if ($faqs->have_posts()): ?>
             <div class="card card-faq-category rounded-0">
-              <button class="btn btn-primary btn-block text-left rounded-0" id="faqs-<?php echo $collection->slug; ?>-heading" data-toggle="collapse" data-target="#faqs-<?php echo $collection->slug; ?>" aria-expanded="<?php echo $expanded ? "true" : "false"; ?>">
+              <button class="btn btn-primary btn-block text-left rounded-0" id="faqs-<?php echo $collection->slug; ?>-heading" data-toggle="collapse" data-target="#faqs-<?php echo $collection->slug; ?>" aria-expanded="<?php echo $expanded
+  ? "true"
+  : "false"; ?>">
                 <h2 class="h3 mb-0 card-title"><?php echo $collection->description; ?>&hellip;</h2>
               </button>
 
-              <div id="faqs-<?php echo $collection->slug; ?>" class="collapse <?php echo $expanded ? "show" : ""; ?>" aria-labelledby="faqs-<?php echo $collection->slug; ?>-heading" data-parent="#faqsAccordion">
+              <div id="faqs-<?php echo $collection->slug; ?>" class="collapse <?php echo $expanded
+  ? "show"
+  : ""; ?>" aria-labelledby="faqs-<?php echo $collection->slug; ?>-heading" data-parent="#faqsAccordion">
                 <div class="card-body">
-                  <?php while($faqs->have_posts()): $faqs->the_post(); ?>
+                  <?php while ($faqs->have_posts()):
+                    $faqs->the_post(); ?>
                   <article class="faq">
                     <header><h4><?php the_title(); ?><h4></header>
 
@@ -54,15 +57,16 @@ get_template_part('template-part-hero', 'archive', $post_type);
                       <p><a href="#" class="meta cta">Permits</a></p>
                     </footer> -->
                   </article>
-                  <?php endwhile; ?>
+                  <?php
+                  endwhile; ?>
                 </div>
               </div>
             </div>
-          <?php 
-              $faqs = null;
-            endif;
+          <?php $faqs = null;endif;
             $expanded = false;
-          endforeach; wp_reset_query(); ?>
+          endforeach;
+          wp_reset_query();
+          ?>
 
         </div><!-- .accordion -->
 
@@ -70,4 +74,5 @@ get_template_part('template-part-hero', 'archive', $post_type);
     </div>
   </div>
 
-<?php get_footer(); ?>
+<?php get_footer();
+?>

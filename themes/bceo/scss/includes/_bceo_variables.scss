@@ -9,13 +9,13 @@ $bceo-pre-header-color: #808285;
 $bceo-pre-header-hover: darken($bceo-pre-header-color, 20%);
 
 /* Bootstrap Colors */
-$blue:    $bceo-blue;
+$blue: $bceo-blue;
 // $indigo:  #6610f2 !default;
 // $purple:  #6f42c1 !default;
 // $pink:    #d63384 !default;
 // $red:     #dc3545 !default;
-$orange:  $bceo-orange;
-$yellow:  $bceo-yellow;
+$orange: $bceo-orange;
+$yellow: $bceo-yellow;
 // $green:   #198754 !default;
 // $teal:    #20c997 !default;
 // $cyan:    $47bbd0 !default;
@@ -25,8 +25,8 @@ $gray-900: $bceo-gray-900;
 $light: $gray-200;
 
 $secondary: $orange;
-$body-bg:                   $gray-100;
-$body-color:                $gray-900;
+$body-bg: $gray-100;
+$body-color: $gray-900;
 
 /* Buttons */
 // $input-btn-padding-y:       .5rem;
@@ -36,5 +36,3 @@ $body-color:                $gray-900;
 
 $btn-border-width: 2px;
 $btn-font-weight: bold;
-
-

@@ -230,7 +230,10 @@ const watch_files = () => {
     paths.scripts.watch,
     series(clean_scripts, move_scripts, build_scripts, build_editor_scripts)
   );
-  watch(paths.styles.watch, series(clean_styles, move_styles, build_styles, build_editor_styles));
+  watch(
+    paths.styles.watch,
+    series(clean_styles, move_styles, build_styles, build_editor_styles)
+  );
 };
 
 const clean = parallel(clean_styles, clean_scripts /*, clean_images*/);
