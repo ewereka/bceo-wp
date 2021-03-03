@@ -6,42 +6,21 @@
       } ?>
 
       <?php if (is_active_sidebar("footer-widget-area-1")): ?>
-      <div class="footer-widget-area" id="footer-widget-area-1>
+      <div class="footer-widget-area" id="footer-widget-area-1">
         <?php dynamic_sidebar("footer-widget-area-1"); ?>
       </div>
       <?php endif; ?>
     </div>
     
     <div class="col-12 col-sm-6 col-lg-3">
-      <h5>Contact</h5>
-      <small>
-        <address class="text mb-0">1921 Fairgrove Avenue (Ohio 4)
-          Hamilton, OH 45011</address>
-          <p class="mb-0"><a href="tel:+1-513-867-5744">(513) 867-5744</a></p>
-          <p><a href="mailto:hello@bceo.org">hello@bceo.org</a></p>
-        </address>
-      </small>
-
       <?php if (is_active_sidebar("footer-widget-area-2")): ?>
-      <div class="footer-widget-area" id="footer-widget-area-2>
+      <div class="footer-widget-area" id="footer-widget-area-2">
         <?php dynamic_sidebar("footer-widget-area-2"); ?>
       </div>
       <?php endif; ?>
     </div>
     
     <div class="col-12 col-sm-6 col-lg-3">
-      <h5>Resources</h5>
-      <small>
-        <p class="text-uppercase;">
-          Butler County, Ohio<br>
-          <a href="#">Visit &raquo;</a>
-        </p>
-        <p class="text-uppercase;">
-          County Commissioner<br>
-          <a href="#">Visit &raquo;</a>
-        </p>
-      </small>
-
       <?php if (is_active_sidebar("footer-widget-area-3")): ?>
       <div class="footer-widget-area" id="footer-widget-area-3">
         <?php dynamic_sidebar("footer-widget-area-3"); ?>

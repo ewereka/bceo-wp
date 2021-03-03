@@ -820,4 +820,17 @@ body.admin-bar {
 }
 
 .footer-widget-area {
+  font-size: 0.8rem;
+  .widget_nav_menu {
+    .menu {
+      list-style-type: none;
+      padding: 0;
+
+      a {
+        &::after {
+          content: " \00BB";
+        }
+      }
+    }
+  }
 }
