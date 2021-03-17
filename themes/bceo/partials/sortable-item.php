@@ -1,4 +1,5 @@
 <?php
+$post_type = $post_type ? $post_type : "post";
 $sort_tax = get_sort_taxonomy($post_type);
 $post_terms = get_the_terms($post, $sort_tax);
 $nice_terms = [];
@@ -14,20 +15,31 @@ $nice_terms = implode(", ", $nice_terms);
 $class_terms = implode(" ", $class_terms);
 
 switch ($post_type) {
+  case "resources":
+    $spacingClass = "mb-4";
+    $sizingClass = "col-sm-6 col-12";
+    break;
   case "projects":
     $spacingClass = "";
+    $sizingClass = "col-lg-4 col-sm-6 col-12";
     break;
   default:
     $spacingClass = "mb-4";
+    $sizingClass = "col-lg-4 col-sm-6 col-12";
 }
 ?>
-<div class="its-sortable-item <?php echo $class_terms; ?> col-lg-4 col-sm-6 col-12 <?php echo $spacingClass; ?>">
-  <?php if ($post_type === "projects"):
+<div class="its-sortable-item <?php echo $class_terms; ?> <?php echo $sizingClass; ?> <?php echo $spacingClass; ?>">
+  <?php if (in_array($post_type, ["projects", "resources"])):
     get_template_part("partials/preview", $post_type);
   else:
      ?>
-  <article class="blog-preview rounded-0 p-2 bg-light">
-    <a href="<?php the_permalink(); ?>"><figure><?php bceo_featured_image(); ?></figure></a>
+  <article class="blog-preview rounded-0 p-2 bg-light h-100">
+    <a href="<?php the_permalink(); ?>"><figure>
+    <?php if ($post_type === "post") {
+      bceo_category_image();
+    } else {
+      bceo_featured_image();
+    } ?></figure></a>
     <header class="row no-gutters">
       <h5 class="order-3 col-12 mt-1 mb-3"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
       
@@ -41,7 +53,7 @@ switch ($post_type) {
 
     <div class="content">
       <p><?php the_excerpt(); ?></p>
-      <p><a href="<?php the_permalink(); ?>" class="view-more-cta">Read More</a></p>
+      <p class="text-right"><a href="<?php the_permalink(); ?>" class="view-more-cta">Read More</a></p>
     </div>
   </article>
   <?php

@@ -3,6 +3,7 @@ require_once dirname(__FILE__) . "/inc/class.wp-bootstrap-navwalker.php";
 require_once dirname(__FILE__) . "/inc/_inc_helpers.php";
 require_once dirname(__FILE__) . "/inc/_inc_gutenberg_mods.php";
 require_once dirname(__FILE__) . "/inc/_inc_image_sizes.php";
+require_once dirname(__FILE__) . "/inc/_inc_customizer.php";
 require_once dirname(__FILE__) . "/inc/_inc_shortcodes.php";
 
 add_action("after_setup_theme", "ewereka_setup");
@@ -46,7 +47,7 @@ function ewereka_setup()
   add_theme_support("align-wide");
 
   add_theme_support("custom-logo", [
-    "width" => 150,
+    "width" => 280,
     "flex-height" => true,
     "header-text" => ["site-title"],
     "unlink-homepage-logo" => true,
@@ -160,6 +161,46 @@ function ewereka_image_insert_override($sizes)
 add_action("widgets_init", "ewereka_widgets_init");
 function ewereka_widgets_init()
 {
+  register_sidebar([
+    "name" => esc_html__("Pages Sidebar", "com.ewereka.bceo.theme"),
+    "id" => "sidebar-widget-area-page",
+    "class" => "sidebar-widget-area",
+    "before_widget" => '<div id="%1$s" class="widget-container %2$s">',
+    "after_widget" => "</div>",
+    "before_title" => '<h5 class="widget-title">',
+    "after_title" => "</h5>",
+  ]);
+
+  register_sidebar([
+    "name" => esc_html__("News Sidebar", "com.ewereka.bceo.theme"),
+    "id" => "sidebar-widget-area-post",
+    "class" => "sidebar-widget-area",
+    "before_widget" => '<div id="%1$s" class="widget-container %2$s">',
+    "after_widget" => "</div>",
+    "before_title" => '<h5 class="widget-title">',
+    "after_title" => "</h5>",
+  ]);
+
+  register_sidebar([
+    "name" => esc_html__("Projects Sidebar", "com.ewereka.bceo.theme"),
+    "id" => "sidebar-widget-area-projects",
+    "class" => "sidebar-widget-area",
+    "before_widget" => '<div id="%1$s" class="widget-container %2$s">',
+    "after_widget" => "</div>",
+    "before_title" => '<h5 class="widget-title">',
+    "after_title" => "</h5>",
+  ]);
+
+  register_sidebar([
+    "name" => esc_html__("Resources Sidebar", "com.ewereka.bceo.theme"),
+    "id" => "sidebar-widget-area-resources",
+    "class" => "sidebar-widget-area",
+    "before_widget" => '<div id="%1$s" class="widget-container %2$s">',
+    "after_widget" => "</div>",
+    "before_title" => '<h5 class="widget-title">',
+    "after_title" => "</h5>",
+  ]);
+
   register_sidebar([
     "name" => esc_html__("Footer Widget Area 1", "com.ewereka.bceo.theme"),
     "id" => "footer-widget-area-1",

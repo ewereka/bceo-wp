@@ -13,7 +13,33 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
 </head>
 
 <body <?php body_class(); ?>>
-<header class="site-header container-fluid">
+<header class="mobile-site-header d-block d-md-none">
+  <nav class="navbar navbar-light bg-white">
+    <?php if (get_theme_mod("mobile_logo")): ?>
+    <a href="<?php echo get_site_url(); ?>" class="navbar-brand">
+      <img src="<?php echo get_theme_mod("mobile_logo"); ?>" 
+        alt="<?php echo esc_attr(get_bloginfo("name", "display")); ?>" 
+        class="mobile-logo">
+    </a>
+    <?php endif; ?>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobileMainNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <?php wp_nav_menu([
+      "theme_location" => "main-menu",
+      "depth" => 2, // 1 = no dropdowns, 2 = with dropdowns.
+      "container" => "div",
+      "container_class" => "collapse navbar-collapse",
+      "container_id" => "mobileMainNav",
+      "menu_class" => "navbar-nav mr-auto",
+      "fallback_cb" => "WP_Bootstrap_Navwalker::fallback",
+      "walker" => new WP_Bootstrap_Navwalker(),
+    ]); ?>
+  </nav>
+</header>
+
+<header class="site-header container-fluid d-none d-md-block">
     <div class="pre-header">
       <div class="row bg-light py-2 px-2 justify-content-between align-items-center">
         <div class="col-auto">
@@ -73,7 +99,8 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
               endwhile;
             endif; ?>
             
-            <li class="icon search-toggle"><a href="#"><i class="fa fa-search"></i><span class="sr-only">Search</span></a></li>
+            <li><?php echo do_shortcode("[google-translator]"); ?></li>
+            <!-- <li class="icon search-toggle"><a href="#"><i class="fa fa-search"></i><span class="sr-only">Search</span></a></li> -->
           </ul>
         </nav>
         
@@ -81,7 +108,7 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
     </div>
     
     <div class="branding row justify-content-between align-items-top no-gutters">
-      <div class="col-auto">
+      <div class="col-xl-auto col-2">
         <?php if (function_exists("the_custom_logo")) {
           the_custom_logo();
         } ?>
@@ -104,13 +131,10 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
           <?php
           $contactHours = get_field("contact_hours", "option");
           if ($contactHours): ?>
-          <li class="icon"><a href="<?php printf(
-            "mailto:%s",
-            $contactEmail
-          ); ?>" target="_blank">
+          <li class="icon d-none d-lg-block">
             <strong><i class="far fa-clock"></i>Our Hours</strong>
             <?php echo $contactHours; ?>
-          </a></li>
+          </li>
           <?php endif;
           ?>
 
@@ -131,15 +155,15 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
     </div>
     
     <div class="main-nav row no-gutters">
-      <nav class="col-12 col-xl-11">
-      <?php wp_nav_menu([
-        "theme_location" => "main-menu",
-        "depth" => 2, // 1 = no dropdowns, 2 = with dropdowns.
-        "container" => false,
-        "menu_class" => "flex-fill",
-        // 'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
-        // 'walker'          => new WP_Bootstrap_Navwalker(),
-      ]); ?>
+      <nav class=" col-12 col-xl-11">
+        <?php wp_nav_menu([
+          "theme_location" => "main-menu",
+          "depth" => 2, // 1 = no dropdowns, 2 = with dropdowns.
+          "container" => false,
+          "menu_class" => "flex-fill",
+          // 'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+          // 'walker'          => new WP_Bootstrap_Navwalker(),
+        ]); ?>
       </nav>
     </div>
   </header>

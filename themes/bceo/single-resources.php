@@ -14,7 +14,7 @@ get_template_part("partials/hero", $post_type);
   while (have_posts()):
 
     the_post();
-    $post_categories = get_the_category();
+    $post_categories = get_the_terms($post, "resource_type");
     $nice_categories = [];
     foreach ($post_categories as $post_category) {
       $nice_categories[] = $post_category->name;
@@ -32,25 +32,12 @@ get_template_part("partials/hero", $post_type);
 
                 <div class="meta-fields">
                   <p class="meta category"><i class="far fa-folder"></i> <?php echo $nice_categories; ?></p>
-                  <p class="meta date"><i class="far fa-calendar-alt"></i> <?php the_date(
-                    "F j, Y"
-                  ); ?></p>
                 </div>
               </header>
 
               <div class="entry-content my-4">
                 <?php the_content(); ?>
               </div>
-
-              <div class="entry-contact-information mt-5">
-                  <h5 style="text-transform: none;">For more information, contact:</h5>
-
-                  <ul class="no-bullets">
-                    <li><a href="#">Betsy Horton</a>, BCEO Public Information Specialist</li>
-                    <li><a href="#">Greg Wilkens, P.E., P.S.</a>, Butler County Engineer</li>
-                    <li>Phone: <a href="tel:+1-513-867-5744">(513) 867-5744</a></li>
-                  </ul>
-                </div>
             </article>
         </div>
 
@@ -72,23 +59,50 @@ get_template_part("partials/hero", $post_type);
       </div>
     </div>
   </div>
+  <?php if (have_rows("attachments")): ?>
+  <div class="row section-attachments bg-primary no-gutters padded-area">
+    <div class="col-12 text-light">
+      <h2 class="accent-line-yellow">Downloads</h2>
+    </div>
+    <?php while (have_rows("attachments")):
 
-  
+      the_row();
+      $file = get_sub_field("attachment");
+      ?>
+    <div class="col-auto">
+      <?php switch ($file["mime_type"]) {
+        case "application/pdf":
+          $file_icon = "fas fa-file-pdf text-error";
+          break;
+        case "application/msword":
+        case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+          $file_icon = "fas fa-file-word text-primary";
+          break;
+        case "application/vnd.ms-excel":
+        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+          $file_icon = "fas fa-file-excel text-success";
+          break;
+        case "application/zip":
+          $file_icon = "fas fa-file-archive";
+          break;
+        case "application/vnd.ms-powerpoint":
+        case "application/vnd.openxmlformats-officedocument.presentationml.presentation":
+          $file_icon = "fas fa-file-powerpoint text-warning";
+          break;
+        default:
+          $file_icon = "fas fa-file-download";
+      } ?>
+      <a class="attachment-link" href="<?php echo $file["url"]; ?>">
+        <i class="icon <?php echo $file_icon; ?>"></i>
+        <p class="filename"><?php echo $file["title"]; ?></p>
+      </a>
+    </div>
   <?php
-  endwhile; ?>
-  <div class="after-single-navigation">
-    <?php
-    previous_post_link(
-      "%link",
-      __('<span class="meta-nav prev">Previous</span>', "twentyfourteen")
-    );
-    next_post_link(
-      "%link",
-      __('<span class="meta-nav next">Next</span>', "twentyfourteen")
-    );
-    ?>
+    endwhile; ?>
   </div>
-  <?php
+    <?php endif; ?>
+<?php
+  endwhile;
 endif; ?>
 
   <div class="bg-light">
@@ -97,5 +111,4 @@ endif; ?>
 </div>
 
 
-<?php get_footer();
-?>
+<?php get_footer(); ?>

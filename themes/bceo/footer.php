@@ -1,9 +1,11 @@
 <footer class="site-footer container-fluid text-white">
   <div class="row padded-area align-items-top">
     <div class="col-12 col-lg-3">
-      <?php if (function_exists("the_custom_logo")) {
-        the_custom_logo();
-      } ?>
+      <?php if (get_theme_mod("footer_logo")): ?>
+      <img src="<?php echo get_theme_mod("footer_logo"); ?>" 
+        alt="<?php echo esc_attr(get_bloginfo("name", "display")); ?>" 
+        class="footer-logo d-lg-block d-none">
+      <?php endif; ?>
 
       <?php if (is_active_sidebar("footer-widget-area-1")): ?>
       <div class="footer-widget-area" id="footer-widget-area-1">
@@ -91,8 +93,8 @@
       <?php endif; ?>
     </div>
   </div>
-  <div class="sub-footer row px-5 bg-warning text-dark">
-    <div class="col-auto"><a href="#" class="text-dark text-lowercase"><small><?php _e(
+  <div class="sub-footer row px-5 bg-warning text-dark justify-content-center">
+    <div class="col-auto"><a href="/" class="text-dark text-lowercase"><small><?php _e(
       "Employee Portal",
       "com.ewereka.bceo.theme"
     ); ?></small></a></a>

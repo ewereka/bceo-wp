@@ -1,5 +1,6 @@
 <?php
 /**
+ * Template Name: Full Width
  * @package bceo-wp
  * @since bceo-wp 1.0.0
  */
@@ -11,7 +12,7 @@ get_template_part("partials/hero", $post_type);
   <div class="row section-blog-post justify-content-center my-4 py-4">
     <div class="col-11 col-lg-10">
       <div class="row">
-        <div class="col-lg-8 col-12">
+        <div class="col-12">
           <?php if (have_posts()):
             while (have_posts()):
               the_post(); ?>
@@ -29,7 +30,7 @@ get_template_part("partials/hero", $post_type);
             endwhile;
           endif; ?>
         </div>
-        <div class="col-lg-4 col-12">
+        <!-- <div class="col-lg-4 col-12">
           <?php if (has_post_thumbnail()): ?>
           <figure>
             <?php the_post_thumbnail("full", [
@@ -43,7 +44,7 @@ get_template_part("partials/hero", $post_type);
             <?php dynamic_sidebar("footer-widget-area-page"); ?>
           </div>
           <?php endif; ?>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

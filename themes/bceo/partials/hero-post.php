@@ -1,5 +1,5 @@
 <?php
-$page_hero_image_id = get_page_header_image();
+$page_hero_image_id = get_post_header_image();
 
 $page_hero_image_id = $page_hero_image_id
   ? $page_hero_image_id
@@ -13,7 +13,7 @@ $page_hero_style =
     : "";
 ?>
 
-<div class="page-hero parallax" <?php echo $page_hero_style; ?>>
+<div class="page-hero post parallax" <?php echo $page_hero_style; ?>>
   <div class="content text-light text-uppercase">
     <h1 class="h2 my-0"><?php the_title(); ?></h1>
     <?php echo do_shortcode("[flexy_breadcrumb]"); ?>

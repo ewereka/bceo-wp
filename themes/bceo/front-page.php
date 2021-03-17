@@ -32,7 +32,7 @@ get_header(); ?>
   <?php get_template_part("partials/recent-news"); ?>
   <?php get_template_part("partials/faq-cta"); ?>
   <?php get_template_part("partials/by-the-numbers"); ?>
-  <?php get_template_part("partials/recent-projects"); ?>
+  <?php get_template_part("partials/contact-details"); ?>
 </div>
 
 

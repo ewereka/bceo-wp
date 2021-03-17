@@ -15,7 +15,7 @@ get_template_part("partials/hero", "archive", $post_type);
   <div class="main">
     <div class="row section-faqs justify-content-center my-4 py-4">
       <div class="col-10">
-        <h2 class="p-2 text-center bg-warning text-dark"><i class="far fa-question-circle"></i> Frequently Asked Questions</h2>
+        <h2 class="p-2 text-center bg-warning text-dark"><i class="fas fa-search"></i> How do I...</h2>
 
         <div class="accordion" id="faqsAccordion">
           <?php
@@ -37,7 +37,7 @@ get_template_part("partials/hero", "archive", $post_type);
               <button class="btn btn-primary btn-block text-left rounded-0" id="faqs-<?php echo $collection->slug; ?>-heading" data-toggle="collapse" data-target="#faqs-<?php echo $collection->slug; ?>" aria-expanded="<?php echo $expanded
   ? "true"
   : "false"; ?>">
-                <h2 class="h3 mb-0 card-title"><?php echo $collection->description; ?>&hellip;</h2>
+                <h2 class="h3 mb-0 card-title"><?php echo $collection->description; ?></h2>
               </button>
 
               <div id="faqs-<?php echo $collection->slug; ?>" class="collapse <?php echo $expanded
@@ -47,7 +47,16 @@ get_template_part("partials/hero", "archive", $post_type);
                   <?php while ($faqs->have_posts()):
                     $faqs->the_post(); ?>
                   <article class="faq">
-                    <header><h4><?php the_title(); ?><h4></header>
+                    <header class="d-flex align-items-baseline">
+                      <h4><?php the_title(); ?></h4>
+                      <?php edit_post_link(
+                        "<i class=\"far fa-edit\"></i> Edit",
+                        "",
+                        "",
+                        $post,
+                        "ml-auto"
+                      ); ?>
+                    </header>
 
                     <div class="content">
                       <?php the_content(); ?>

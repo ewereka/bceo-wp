@@ -32,6 +32,9 @@ switch ($post_type) {
     $blogClass = "projects";
     $blogListClass = "projects-list";
     break;
+  case "resources":
+    $blogClass = "resources";
+    $blogListClass = "resources-list";
   default:
     $blogClass = "blog";
     $blogListClass = "blog-list";
@@ -41,9 +44,6 @@ get_template_part("partials/hero", "archive", $post_type);
 ?>
 
 <div class="main">
-<?php if (is_tax()) {
-  echo "<h1>tax page</h1>";
-} ?>
   <div class="row section-faqs justify-content-center my-4 py-4">
     <div class="col-10 <?php echo $blogClass; ?> its-sortable">
       <?php if (count($all_terms) > 1): ?>
@@ -72,7 +72,7 @@ get_template_part("partials/hero", "archive", $post_type);
         <div class="row <?php echo $blogListClass; ?>">
           <?php while ($all_posts->have_posts()):
             $all_posts->the_post();
-            get_template_part("partials/sortable-item");
+            get_template_part("partials/sortable-item", $post_type);
           endwhile; ?>
         </div>
       <?php endif; ?>

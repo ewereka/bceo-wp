@@ -22,3 +22,11 @@ function bceo_image_size_names_choose($sizes)
     ),
   ]);
 }
+
+/* Add JFIF image file type for uploads */
+add_filter("upload_mimes", "custom_myme_types", 1, 1);
+function custom_myme_types($mime_types)
+{
+  $mime_types["jfif"] = "image/jfif+xml"; // Adding .jfif extension
+  return $mime_types;
+}

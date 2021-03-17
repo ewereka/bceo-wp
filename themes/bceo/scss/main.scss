@@ -106,6 +106,17 @@
 
 .branding {
   padding: 2rem 3rem;
+  .custom-logo {
+    width: 170px;
+    height: auto;
+    display: block;
+
+    @include media-breakpoint-up(xl) {
+      margin-top: -1rem;
+      margin-bottom: -1rem;
+      width: auto;
+    }
+  }
   .logo {
     width: 150px;
     height: 87px;
@@ -270,17 +281,49 @@
   background-position: 50% 50%;
   background-color: $body-color;
 
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba($black, 0.5);
+  }
+
   display: flex;
   align-items: center !important;
 
+  &.post {
+    &::after {
+      display: none;
+    }
+  }
   .content {
     padding: 1rem 4rem;
+    position: relative;
+    z-index: 2;
   }
 }
 
 .padded-area {
   padding: 3rem !important;
 }
+
+.section-contact-details {
+  .map-wrapper {
+    min-height: 200px;
+    .map {
+      background-size: cover;
+      background-position: 50% 50%;
+    }
+  }
+}
+
 .section-projects {
   .map-wrapper {
     background-color: $orange;
@@ -365,6 +408,36 @@
     }
 
     margin: 0 0 1.5rem;
+    &.resources {
+      position: relative;
+      background-color: $light;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      text-decoration: none;
+      color: $body-color;
+
+      h5 {
+        flex: 1;
+        display: block;
+        margin: 0;
+        font-size: 1.1rem;
+        line-height: 1.2;
+      }
+      .icon {
+        display: block;
+        width: 3rem;
+        font-size: 3rem;
+        line-height: 1;
+      }
+      .arrow {
+        display: block;
+        width: 1.3rem;
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+    }
 
     &.projects {
       position: relative;
@@ -479,17 +552,44 @@
     background-repeat: no-repeat;
   }
 }
-
+.staff-list {
+  .staff-list-avatar {
+    height: 0;
+    display: block;
+    padding: 0 0 100%;
+    background-image: url(../img/placeholders/default-avatar.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+}
+.contracts-list {
+  .contract {
+    border-bottom: 1px solid $light;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  .contract-subtitle {
+    font-weight: bold;
+    margin: 0;
+  }
+  .contract-location {
+    color: $primary;
+  }
+  .contract-details,
+  .contract-construction-start,
+  .contract-construction-complete {
+    margin: 0;
+  }
+}
 .site-footer {
   background-color: $gray-900;
 
   .footer-logo {
-    width: 200px;
-    height: 116px;
-    background-image: url(../img/branding/logo_flat@2x.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    display: block;
+    width: 100%;
+    max-width: 175px;
+    height: auto;
   }
 
   .social-icons {
@@ -511,6 +611,13 @@
   }
 }
 .entry-content {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1em;
+  }
   .c-accordion {
     &__item {
       margin: 1rem 0;
@@ -555,6 +662,12 @@
       }
     }
   }
+}
+
+.entry-featured-img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 #faqsAccordion {
@@ -660,8 +773,6 @@
 
 .blog {
   .meta-fields {
-    display: flex;
-    justify-content: left;
     .meta {
       color: $bceo-pre-header-hover;
       font-weight: 300;
@@ -803,6 +914,50 @@
   }
 }
 
+.mobile-site-header {
+  margin-bottom: 1.6rem;
+  .navbar-toggler {
+    border: 0;
+    background-color: transparent;
+    color: $body-color;
+    outline: none;
+
+    &:hover {
+      color: $yellow;
+      outline: none;
+    }
+  }
+  .mobile-logo {
+    width: 100px;
+    height: auto;
+    display: block;
+  }
+  .navbar-nav {
+    text-align: center;
+    font-weight: bold;
+    .nav-item {
+      a {
+        color: $body-color;
+      }
+
+      span {
+        border-bottom: 2px solid transparent;
+      }
+
+      &.active {
+        color: $body-color;
+
+        span {
+          border-bottom: 2px solid $orange;
+        }
+      }
+    }
+    a {
+      color: $body-color;
+    }
+  }
+}
+
 body.admin-bar {
   .site-header {
     .main-nav {
@@ -833,4 +988,66 @@ body.admin-bar {
       }
     }
   }
+}
+
+.fbc-page {
+  .fbc-wrap {
+    .fbc-items {
+      display: flex;
+      > li,
+      > .sep {
+        padding: 0.5rem 0.25rem;
+
+        &.active span,
+        .fbc-end-text {
+          color: $white !important;
+        }
+      }
+      > li {
+        line-height: 1;
+        &:first-child {
+          padding-left: 0.25rem;
+          padding-right: 0;
+        }
+      }
+      > .sep {
+        line-height: 0.9;
+      }
+    }
+  }
+}
+
+.attachment-link {
+  color: $white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .icon {
+    font-size: 4rem;
+
+    &.fa-file-pdf {
+      color: $red;
+    }
+  }
+  .filename {
+    max-width: 200px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+#wpadminbar {
+  @media screen and (max-width: 600px) {
+    position: fixed;
+  }
+}
+
+.debug {
+  display: none !important;
 }

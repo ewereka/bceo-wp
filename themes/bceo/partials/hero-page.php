@@ -12,7 +12,7 @@ $page_hero_style =
     : "";
 ?>
 
-<div class="page-hero" <?php echo $page_hero_style; ?>>
+<div class="page-hero parallax" <?php echo $page_hero_style; ?>>
   <div class="content text-light text-uppercase">
     <h1 class="h2 my-0"><?php the_archive_title(); ?></h1>
     <?php echo do_shortcode("[flexy_breadcrumb]"); ?>

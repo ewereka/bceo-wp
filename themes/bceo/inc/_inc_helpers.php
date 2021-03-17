@@ -77,6 +77,9 @@ function get_sort_taxonomy($post_type = null)
     case "projects":
       $rVal = "project_status";
       break;
+    case "resources":
+      $rVal = "resource_type";
+      break;
     case "post":
     default:
       $rVal = "category";
@@ -113,6 +116,36 @@ function get_page_header_image($use_custom = true)
   return $image;
 }
 
+function get_post_header_image($use_custom = true)
+{
+  global $post;
+  global $post_type;
+
+  $default = "release";
+  $default_term = get_term_by("slug", $default, "category");
+
+  $image_id = null;
+
+  $terms = get_the_terms($post, "category");
+  $use_term = $default_term;
+  if ($terms && !is_wp_error($terms) && count($terms) > 0) {
+    $terms_count = count($terms);
+    foreach ($terms as $term) {
+      if ($terms_count > 1 && $default_term->term_id === $term->term_id) {
+        continue;
+      }
+      $use_term = $term;
+      break;
+    }
+  }
+
+  $image_id = get_field("header_image", "category_" . $use_term->term_id);
+
+  $image_id = $image_id ? $image_id : null;
+
+  return $image_id;
+}
+
 function bceo_featured_image($echo = true)
 {
   global $post;
@@ -126,6 +159,73 @@ function bceo_featured_image($echo = true)
    */
   if (has_post_thumbnail()) {
     $image_id = get_post_thumbnail_id(get_the_ID());
+  } else {
+    $settings = sprintf("%s_settings", $post_type ? $post_type : "default");
+    $default_settings = "default_settings";
+
+    if (have_rows($settings, "option")) {
+      while (have_rows($settings, "option")) {
+        the_row();
+        $image_id = get_sub_field("default_featured_image");
+      }
+    }
+
+    if (!$image_id) {
+      if (have_rows($default_settings, "option")) {
+        while (have_rows($default_settings, "option")) {
+          the_row();
+          $image_id = get_sub_field("default_featured_image");
+        }
+      }
+    }
+  }
+  if ($image_id) {
+    $image = wp_get_attachment_image_src($image_id, "featured-image-md", false);
+    $rVal =
+      "<img src=\"" .
+      esc_url($image[0]) .
+      "\" alt=\"\" class=\"img-fluid $post_type\">";
+  }
+
+  if ($echo) {
+    echo $rVal;
+  } else {
+    return $rVal;
+  }
+}
+
+function bceo_category_image($echo = true)
+{
+  global $post;
+  global $post_type;
+
+  $default = "release";
+  $default_term = get_term_by("slug", $default, "category");
+
+  $image_id = null;
+
+  $rVal = "";
+  /**
+   * @todo Add alt text to image tag
+   */
+
+  $terms = get_the_terms($post, "category");
+  $use_term = $default_term;
+  if ($terms && !is_wp_error($terms) && count($terms) > 0) {
+    $terms_count = count($terms);
+    foreach ($terms as $term) {
+      if ($terms_count > 1 && $default_term->term_id === $term->term_id) {
+        continue;
+      }
+      $use_term = $term;
+      break;
+    }
+  }
+
+  $category_image_id = get_field("image", "category_" . $use_term->term_id);
+
+  if ($category_image_id) {
+    $image_id = $category_image_id;
   } else {
     $settings = sprintf("%s_settings", $post_type ? $post_type : "default");
     $default_settings = "default_settings";

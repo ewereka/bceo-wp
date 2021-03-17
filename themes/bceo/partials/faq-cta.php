@@ -36,7 +36,7 @@ if ($enabled):
     }
 
     $link_tag = sprintf(
-      '<a href="%s" target="%s" class="btn btn-faq-cta btn-block %s"><i class="far fa-question-circle mr-2" role="img"></i>%s</a>',
+      '<a href="%s" target="%s" class="btn btn-faq-cta btn-block %s"><i class="fas fa-search mr-2" role="img"></i>%s</a>',
       esc_attr($link_url),
       esc_attr($link_target),
       $btnClass,

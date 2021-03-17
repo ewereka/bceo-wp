@@ -43,11 +43,26 @@ function animateNumberBlocks($parent) {
   });
 }
 
+var debugState = false;
+
 $(function () {
+  document.addEventListener("keydown", function (event) {
+    if (event.code === "Backquote" && event.ctrlKey) {
+      if (debugState) {
+        $(".debug").removeClass("debug").addClass("debug-on");
+        debugState = false;
+      } else {
+        $(".debug-on").removeClass("debug-on").addClass("debug");
+        debugState = true;
+      }
+      console.log(debugState);
+    }
+  });
+
   $(".its-sortable").each(function () {
     var $parent = $(this);
     var $sorter = $parent.find(".its-sortable-nav");
-    var prefix = $parent.data("its-sortable-prefix") || "category";
+    var prefix = $sorter.data("its-sortable-prefix") || "category";
     var $sorterLinks = $sorter.find(".its-sortable-link");
     $sorterLinks
       .on("click", function (e) {
