@@ -42,7 +42,7 @@ get_template_part("partials/hero", $post_type);
                 <?php the_content(); ?>
               </div>
 
-              <?php if (get_the_field('show_contact_info')) : ?>
+              <?php if (get_field('show_contact_info')) : ?>
               <div class="entry-contact-information mt-5">
                 <h5 style="text-transform: none;"><?php the_field('heading_contact_info'); ?></h5>
                 <?php the_field('content_contact_info'); ?>

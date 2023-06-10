@@ -25,6 +25,7 @@ get_template_part("partials/hero", "archive", $post_type);
             // Info
             $all_posts->the_post();
             $subtitle = get_field("subtitle");
+            $url = get_field("url");
             $location = get_field("location");
 
             // Details
@@ -62,10 +63,12 @@ get_template_part("partials/hero", "archive", $post_type);
             ?>
             <article class="contract row">
               <div class="col-12 col-md-4 contract-info">
+                <?php if ($url) printf("<a href=\"%s\" target=\"_blank\">", $url); ?>
                 <h5 class="mb-0"><?php the_title(); ?></h5>
                 <?php if ($subtitle) {
                   printf("<p class=\"contract-subtitle\">%s</p>", $subtitle);
                 } ?>
+                <?php if ($url) printf("</a>"); ?>
                 <?php if ($location) {
                   printf("<p class=\"contract-location\">%s</p>", $location);
                 } ?>
