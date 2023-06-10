@@ -24,9 +24,9 @@ class BCEO_Customizations
   // private static $project_location_taxonomy_name = "project_location";
   // private static $project_location_taxonomy_slug = "location";
 
-  private static $resources_type_name = "resources";
-  private static $resource_type_taxonomy_name = "resource_type";
-  private static $resource_type_taxonomy_slug = "type";
+  private static $reports_type_name = "reports";
+  private static $report_type_taxonomy_name = "report_type";
+  private static $report_type_taxonomy_slug = "type";
 
   /**
    * Method executed by the init hook in the main plugin file
@@ -341,42 +341,42 @@ class BCEO_Customizations
     //   "supports" => ["title", "editor", "excerpt", "thumbnail", "revisions"],
     // ];
 
-    $resources_type_name = static::$resources_type_name;
-    $resources_slug = static::$resources_type_name;
-    $resources_type_labels = [
+    $reports_type_name = static::$reports_type_name;
+    $reports_slug = static::$reports_type_name;
+    $reports_type_labels = [
       "name" => _x(
-        "Resources",
+        "Reports",
         "projects type general name",
         "com.ewereka.bceo.plugin"
       ),
       "singular_name" => _x(
-        "Resource",
+        "Report",
         "projects type singular name",
         "com.ewereka.bceo.plugin"
       ),
-      "menu_name" => _x("Resources", "admin menu", "com.ewereka.bceo.plugin"),
+      "menu_name" => _x("Reports", "admin menu", "com.ewereka.bceo.plugin"),
       "name_admin_bar" => _x(
-        "Resources",
+        "Reports",
         "add new on admin bar",
         "com.ewereka.bceo.plugin"
       ),
-      "add_new" => _x("Add Resource", "com.ewereka.bceo.plugin"),
-      "add_new_item" => __("Add Resource", "com.ewereka.bceo.plugin"),
-      "new_item" => __("New Resource", "com.ewereka.bceo.plugin"),
-      "edit_item" => __("Edit Resource", "com.ewereka.bceo.plugin"),
-      "view_item" => __("View Resource", "com.ewereka.bceo.plugin"),
-      "all_items" => __("All Resources", "com.ewereka.bceo.plugin"),
-      "search_items" => __("Search Resources", "com.ewereka.bceo.plugin"),
-      "parent_item_colon" => __("Parent Resource:", "com.ewereka.bceo.plugin"),
-      "not_found" => __("No resources found.", "com.ewereka.bceo.plugin"),
+      "add_new" => _x("Add Report", "com.ewereka.bceo.plugin"),
+      "add_new_item" => __("Add Report", "com.ewereka.bceo.plugin"),
+      "new_item" => __("New Report", "com.ewereka.bceo.plugin"),
+      "edit_item" => __("Edit Report", "com.ewereka.bceo.plugin"),
+      "view_item" => __("View Report", "com.ewereka.bceo.plugin"),
+      "all_items" => __("All Reports", "com.ewereka.bceo.plugin"),
+      "search_items" => __("Search Reports", "com.ewereka.bceo.plugin"),
+      "parent_item_colon" => __("Parent Report:", "com.ewereka.bceo.plugin"),
+      "not_found" => __("No reports found.", "com.ewereka.bceo.plugin"),
       "not_found_in_trash" => __(
-        "No resources found in trash.",
+        "No reports found in trash.",
         "com.ewereka.bceo.plugin"
       ),
-      "archives" => __("Resources", "com.ewereka.bceo.plugin"),
+      "archives" => __("Reports", "com.ewereka.bceo.plugin"),
     ];
-    $resources_type_args = [
-      "labels" => $resources_type_labels,
+    $reports_type_args = [
+      "labels" => $reports_type_labels,
       "exclude_from_search" => false,
       "public" => true,
       "publicly_queryable" => true,
@@ -385,12 +385,12 @@ class BCEO_Customizations
       "show_in_menu" => true,
       "show_in_admin_bar" => true,
       "query_var" => true,
-      "rewrite" => ["slug" => $resources_slug, "with_front" => false],
+      "rewrite" => ["slug" => $reports_slug, "with_front" => false],
       "capability_type" => "post",
       "has_archive" => true,
       "hierarchical" => false,
-      "menu_position" => 21,
-      "menu_icon" => "dashicons-download",
+      "menu_position" => 20,
+      "menu_icon" => "dashicons-analytics",
       "show_in_rest" => true,
       "supports" => ["title", "editor", "excerpt", "thumbnail", "revisions"],
     ];
@@ -399,7 +399,7 @@ class BCEO_Customizations
     register_post_type($faq_type_name, $faq_type_args);
     register_post_type($contracts_type_name, $contracts_type_args);
     // register_post_type($projects_type_name, $projects_type_args);
-    register_post_type($resources_type_name, $resources_type_args);
+    register_post_type($reports_type_name, $reports_type_args);
 
     /** Taxonomies */
     $faq_collection_taxonomy_name = static::$faq_collection_taxonomy_name;
@@ -504,45 +504,42 @@ class BCEO_Customizations
     //   "rewrite" => ["slug" => $project_location_taxonomy_slug],
     // ];
 
-    $resource_type_taxonomy_name = static::$resource_type_taxonomy_name;
-    $resource_type_taxonomy_slug = static::$resource_type_taxonomy_slug;
-    $resource_type_taxonomy_labels = [
+    $report_type_taxonomy_name = static::$report_type_taxonomy_name;
+    $report_type_taxonomy_slug = static::$report_type_taxonomy_slug;
+    $report_type_taxonomy_labels = [
       "name" => _x(
-        "Resource Types",
+        "Report Types",
         "taxonomy general name",
         "com.ewereka.bceo.plugin"
       ),
       "singular_name" => _x(
-        "Resource Type",
+        "Report Type",
         "taxonomy singular name",
         "com.ewereka.bceo.plugin"
       ),
-      "search_items" => __("Search Resource Types", "com.ewereka.bceo.plugin"),
-      "all_items" => __("All Resource Types", "com.ewereka.bceo.plugin"),
-      "parent_item" => __("Parent Resource Type", "com.ewereka.bceo.plugin"),
+      "search_items" => __("Search Report Types", "com.ewereka.bceo.plugin"),
+      "all_items" => __("All Report Types", "com.ewereka.bceo.plugin"),
+      "parent_item" => __("Parent Report Type", "com.ewereka.bceo.plugin"),
       "parent_item_colon" => __(
-        "Parent Resource Type:",
+        "Parent Report Type:",
         "com.ewereka.bceo.plugin"
       ),
-      "edit_item" => __("Edit Resource Type", "com.ewereka.bceo.plugin"),
-      "update_item" => __("Update Resource Type", "com.ewereka.bceo.plugin"),
-      "add_new_item" => __("Add New Resource Type", "com.ewereka.bceo.plugin"),
-      "new_item_name" => __(
-        "New Resource Type Name",
-        "com.ewereka.bceo.plugin"
-      ),
-      "menu_name" => __("Resource Types", "com.ewereka.bceo.plugin"),
-      "back_to_items" => __("Go to Resource Types", "com.ewereka.bceo.plugin"),
+      "edit_item" => __("Edit Report Type", "com.ewereka.bceo.plugin"),
+      "update_item" => __("Update Report Type", "com.ewereka.bceo.plugin"),
+      "add_new_item" => __("Add New Report Type", "com.ewereka.bceo.plugin"),
+      "new_item_name" => __("New Report Type Name", "com.ewereka.bceo.plugin"),
+      "menu_name" => __("Report Types", "com.ewereka.bceo.plugin"),
+      "back_to_items" => __("Go to Report Types", "com.ewereka.bceo.plugin"),
     ];
 
-    $resource_type_taxonomy_args = [
+    $report_type_taxonomy_args = [
       "hierarchical" => true,
-      "labels" => $resource_type_taxonomy_labels,
+      "labels" => $report_type_taxonomy_labels,
       "show_ui" => true,
       "show_admin_column" => true,
       "query_var" => true,
       "show_in_rest" => true,
-      "rewrite" => ["slug" => $resource_type_taxonomy_slug],
+      "rewrite" => ["slug" => $report_type_taxonomy_slug],
     ];
 
     register_taxonomy(
@@ -561,9 +558,9 @@ class BCEO_Customizations
     //   $project_location_taxonomy_args
     // );
     register_taxonomy(
-      $resource_type_taxonomy_name,
-      [$resources_type_name],
-      $resource_type_taxonomy_args
+      $report_type_taxonomy_name,
+      [$reports_type_name],
+      $report_type_taxonomy_args
     );
 
     //Enable Featured Images

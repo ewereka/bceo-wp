@@ -107,15 +107,8 @@
 .branding {
   padding: 2rem 3rem;
   .custom-logo {
-    width: 170px;
-    height: auto;
-    display: block;
-
-    @include media-breakpoint-up(xl) {
-      margin-top: -1rem;
-      margin-bottom: -1rem;
-      width: auto;
-    }
+    margin-top: -1rem;
+    margin-bottom: -1rem;
   }
   .logo {
     width: 150px;
@@ -552,34 +545,15 @@
     background-repeat: no-repeat;
   }
 }
-.staff-list {
-  .staff-list-avatar {
-    height: 0;
-    display: block;
-    padding: 0 0 100%;
-    background-image: url(../img/placeholders/default-avatar.png);
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-  }
-}
+
 .contracts-list {
-  .contract {
-    border-bottom: 1px solid $light;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-  }
   .contract-subtitle {
     font-weight: bold;
     margin: 0;
   }
   .contract-location {
     color: $primary;
-  }
-  .contract-details,
-  .contract-construction-start,
-  .contract-construction-complete {
-    margin: 0;
+    font-weight: 600;
   }
 }
 .site-footer {
@@ -914,50 +888,6 @@
   }
 }
 
-.mobile-site-header {
-  margin-bottom: 1.6rem;
-  .navbar-toggler {
-    border: 0;
-    background-color: transparent;
-    color: $body-color;
-    outline: none;
-
-    &:hover {
-      color: $yellow;
-      outline: none;
-    }
-  }
-  .mobile-logo {
-    width: 100px;
-    height: auto;
-    display: block;
-  }
-  .navbar-nav {
-    text-align: center;
-    font-weight: bold;
-    .nav-item {
-      a {
-        color: $body-color;
-      }
-
-      span {
-        border-bottom: 2px solid transparent;
-      }
-
-      &.active {
-        color: $body-color;
-
-        span {
-          border-bottom: 2px solid $orange;
-        }
-      }
-    }
-    a {
-      color: $body-color;
-    }
-  }
-}
-
 body.admin-bar {
   .site-header {
     .main-nav {
@@ -1039,12 +969,6 @@ body.admin-bar {
   &:hover {
     color: $white;
     text-decoration: none;
-  }
-}
-
-#wpadminbar {
-  @media screen and (max-width: 600px) {
-    position: fixed;
   }
 }
 

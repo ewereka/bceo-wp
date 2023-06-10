@@ -32,8 +32,8 @@ get_template_part("partials/hero", $post_type);
 
                 <div class="meta-fields">
                   <p class="meta category"><i class="far fa-folder"></i> <?php echo $nice_categories; ?></p>
-                  <p class="meta date"><i class="far fa-calendar-alt"></i> <?php the_date(
-                    "F j, Y"
+                  <p class="meta date"><i class="far fa-calendar-alt"></i> <?php the_time(
+                    "F d, Y"
                   ); ?></p>
                 </div>
               </header>
@@ -46,8 +46,8 @@ get_template_part("partials/hero", $post_type);
                   <h5 style="text-transform: none;">For more information, contact:</h5>
 
                   <ul class="no-bullets">
-                    <li><a href="#">Betsy Horton</a>, BCEO Public Information Specialist</li>
-                    <li><a href="#">Greg Wilkens, P.E., P.S.</a>, Butler County Engineer</li>
+                    <li><a href="mailto:HortonB@bceo.org">Betsy Horton</a>, BCEO Public Information Specialist</li>
+                    <li><a href="mailto:WilkensG@bceo.org">Greg Wilkens, P.E., P.S.</a>, Butler County Engineer</li>
                     <li>Phone: <a href="tel:+1-513-867-5744">(513) 867-5744</a></li>
                   </ul>
                 </div>
@@ -73,6 +73,8 @@ get_template_part("partials/hero", $post_type);
     </div>
   </div>
 
+  
+  <?php get_template_part("partials/attachments"); ?>
   
   <?php
   endwhile; ?>

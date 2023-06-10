@@ -32,15 +32,16 @@ switch ($post_type) {
     $blogClass = "projects";
     $blogListClass = "projects-list";
     break;
-  case "resources":
-    $blogClass = "resources";
-    $blogListClass = "resources-list";
+  case "reports":
+    $blogClass = "reports";
+    $blogListClass = "reports-list";
+    break;
   default:
     $blogClass = "blog";
     $blogListClass = "blog-list";
 }
 
-get_template_part("partials/hero", "archive", $post_type);
+get_template_part("partials/hero-archive");
 ?>
 
 <div class="main">

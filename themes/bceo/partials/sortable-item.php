@@ -20,42 +20,24 @@ switch ($post_type) {
     $sizingClass = "col-sm-6 col-12";
     break;
   case "projects":
-    $spacingClass = "";
-    $sizingClass = "col-lg-4 col-sm-6 col-12";
-    break;
   default:
     $spacingClass = "mb-4";
     $sizingClass = "col-lg-4 col-sm-6 col-12";
 }
 ?>
 <div class="its-sortable-item <?php echo $class_terms; ?> <?php echo $sizingClass; ?> <?php echo $spacingClass; ?>">
-  <?php if (in_array($post_type, ["projects", "resources"])):
-    get_template_part("partials/preview", $post_type);
-  else:
-     ?>
   <article class="blog-preview rounded-0 p-2 bg-light h-100">
-    <a href="<?php the_permalink(); ?>"><figure>
-    <?php if ($post_type === "post") {
-      bceo_category_image();
-    } else {
-      bceo_featured_image();
-    } ?></figure></a>
+    <a href="<?php the_permalink(); ?>"><figure><?php bceo_category_image(); ?></figure></a>
     <header class="row no-gutters">
       <h5 class="order-3 col-12 mt-1 mb-3"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
       
       <div class="meta-fields order-2 col-12">
-        <p class="meta category"><i class="far fa-folder"></i> <?php echo $nice_terms; ?></p>
-        <p class="meta date"><i class="far fa-calendar-alt"></i> <?php the_date(
-          "F j, Y"
+        <p class="meta date"><i class="far fa-calendar-alt"></i> <?php the_time(
+          "F d, Y"
         ); ?></p>
       </div>
     </header>
 
-    <div class="content">
-      <p><?php the_excerpt(); ?></p>
-      <p class="text-right"><a href="<?php the_permalink(); ?>" class="view-more-cta">Read More</a></p>
-    </div>
+    <a href="<?php the_permalink(); ?>" class="btn btn-read-more">Read More</a>
   </article>
-  <?php
-  endif; ?>
 </div><!-- .its-sortable-item -->

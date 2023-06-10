@@ -8,7 +8,7 @@ get_header();
 $collections = get_terms([
   "taxonomy" => "collection",
 ]);
-$expanded = true;
+$expanded = false;
 
 get_template_part("partials/hero", "archive", $post_type);
 ?>

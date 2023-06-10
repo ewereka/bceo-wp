@@ -26,17 +26,17 @@
 
 function animateNumberBlocks($parent) {
   $parent.find(".number-blocks--block--number").each(function () {
-    $(this)
+    jQuery(this)
       .prop("Counter", 0)
       .animate(
         {
-          Counter: $(this).text(),
+          Counter: jQuery(this).text(),
         },
         {
           duration: 4000,
           easing: "swing",
           step: function (now) {
-            $(this).text(Math.ceil(now));
+            jQuery(this).text(Math.ceil(now));
           },
         }
       );
@@ -45,29 +45,29 @@ function animateNumberBlocks($parent) {
 
 var debugState = false;
 
-$(function () {
+jQuery(function () {
   document.addEventListener("keydown", function (event) {
     if (event.code === "Backquote" && event.ctrlKey) {
       if (debugState) {
-        $(".debug").removeClass("debug").addClass("debug-on");
+        jQuery(".debug").removeClass("debug").addClass("debug-on");
         debugState = false;
       } else {
-        $(".debug-on").removeClass("debug-on").addClass("debug");
+        jQuery(".debug-on").removeClass("debug-on").addClass("debug");
         debugState = true;
       }
       console.log(debugState);
     }
   });
 
-  $(".its-sortable").each(function () {
-    var $parent = $(this);
+  jQuery(".its-sortable").each(function () {
+    var $parent = jQuery(this);
     var $sorter = $parent.find(".its-sortable-nav");
     var prefix = $sorter.data("its-sortable-prefix") || "category";
     var $sorterLinks = $sorter.find(".its-sortable-link");
     $sorterLinks
       .on("click", function (e) {
         e.preventDefault();
-        var $this = $(this);
+        var $this = jQuery(this);
 
         $sorterLinks.removeClass("active");
         $this.addClass("active");
@@ -86,17 +86,17 @@ $(function () {
       .trigger("click");
   });
 
-  var $win = $(window);
-  var $numberBlocks = $(".number-blocks:not(.animated)").addClass(
+  var $win = jQuery(window);
+  var $numberBlocks = jQuery(".number-blocks:not(.animated)").addClass(
     "can-animate"
   );
-  var $mainNav = $(".main-nav").eq(0);
+  var $mainNav = jQuery(".main-nav").eq(0);
   var mainNavSticky = $mainNav.offset().top;
 
   $win
     .on("scroll", (e) => {
       $numberBlocks.each((i, el) => {
-        var $el = $(el);
+        var $el = jQuery(el);
         if (!$el.hasClass("animated") && $el.visible(true)) {
           $el.addClass("animated");
           animateNumberBlocks($el);

@@ -77,8 +77,8 @@ function get_sort_taxonomy($post_type = null)
     case "projects":
       $rVal = "project_status";
       break;
-    case "resources":
-      $rVal = "resource_type";
+    case "reports":
+      $rVal = "report_type";
       break;
     case "post":
     default:
@@ -121,25 +121,45 @@ function get_post_header_image($use_custom = true)
   global $post;
   global $post_type;
 
-  $default = "release";
-  $default_term = get_term_by("slug", $default, "category");
-
+  $taxonomy = get_sort_taxonomy($post_type);
   $image_id = null;
+  $terms = get_the_terms($post, $taxonomy);
 
-  $terms = get_the_terms($post, "category");
-  $use_term = $default_term;
   if ($terms && !is_wp_error($terms) && count($terms) > 0) {
     $terms_count = count($terms);
     foreach ($terms as $term) {
-      if ($terms_count > 1 && $default_term->term_id === $term->term_id) {
-        continue;
-      }
       $use_term = $term;
       break;
     }
   }
 
-  $image_id = get_field("header_image", "category_" . $use_term->term_id);
+  if (!empty($use_term)) {
+    $image_id = get_field(
+      "header_image",
+      sprintf("%s_%d", $taxonomy, $use_term->term_id)
+    );
+  }
+
+  if (!$image_id) {
+    $settings = sprintf("%s_settings", $post_type ? $post_type : "default");
+    $default_settings = "default_settings";
+
+    if (have_rows($settings, "option")) {
+      while (have_rows($settings, "option")) {
+        the_row();
+        $image_id = get_sub_field("default_header_image");
+      }
+    }
+
+    if (!$image_id) {
+      if (have_rows($default_settings, "option")) {
+        while (have_rows($default_settings, "option")) {
+          the_row();
+          $image_id = get_sub_field("default_header_image");
+        }
+      }
+    }
+  }
 
   $image_id = $image_id ? $image_id : null;
 
@@ -199,34 +219,30 @@ function bceo_category_image($echo = true)
   global $post;
   global $post_type;
 
-  $default = "release";
-  $default_term = get_term_by("slug", $default, "category");
+  $taxonomy = get_sort_taxonomy($post_type);
 
   $image_id = null;
 
   $rVal = "";
-  /**
-   * @todo Add alt text to image tag
-   */
 
-  $terms = get_the_terms($post, "category");
-  $use_term = $default_term;
+  $terms = get_the_terms($post, $taxonomy);
+
   if ($terms && !is_wp_error($terms) && count($terms) > 0) {
     $terms_count = count($terms);
     foreach ($terms as $term) {
-      if ($terms_count > 1 && $default_term->term_id === $term->term_id) {
-        continue;
-      }
       $use_term = $term;
       break;
     }
   }
 
-  $category_image_id = get_field("image", "category_" . $use_term->term_id);
+  if (!empty($use_term)) {
+    $image_id = get_field(
+      "image",
+      sprintf("%s_%d", $taxonomy, $use_term->term_id)
+    );
+  }
 
-  if ($category_image_id) {
-    $image_id = $category_image_id;
-  } else {
+  if (!$image_id) {
     $settings = sprintf("%s_settings", $post_type ? $post_type : "default");
     $default_settings = "default_settings";
 

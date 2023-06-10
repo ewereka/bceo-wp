@@ -13,7 +13,7 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
 </head>
 
 <body <?php body_class(); ?>>
-<header class="mobile-site-header d-block d-md-none">
+<header class="mobile-site-header d-block d-lg-none">
   <nav class="navbar navbar-light bg-white">
     <?php if (get_theme_mod("mobile_logo")): ?>
     <a href="<?php echo get_site_url(); ?>" class="navbar-brand">
@@ -39,7 +39,7 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
   </nav>
 </header>
 
-<header class="site-header container-fluid d-none d-md-block">
+<header class="site-header container-fluid d-none d-lg-block">
     <div class="pre-header">
       <div class="row bg-light py-2 px-2 justify-content-between align-items-center">
         <div class="col-auto">
@@ -85,10 +85,7 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
                 }
                 if ($url) {
                   printf(
-                    '<li class="%s"><a href="%s" target="_blank"><i class="%s"></i><span class="sr-only">%s</span></a></li>',
-                    $lastSocialIndex === get_row_index()
-                      ? "icon divide-after"
-                      : "icon",
+                    '<li class="icon"><a href="%s" target="_blank"><i class="%s"></i><span class="sr-only">%s</span></a></li>',
                     $url,
                     $icon,
                     $label
@@ -118,23 +115,13 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
           <?php
           $contactEmail = get_field("contact_email", "option");
           if ($contactEmail): ?>
-          <li class="icon"><a href="<?php printf(
+          <li><a class="btn btn-secondary" href="<?php printf(
             "mailto:%s",
             $contactEmail
           ); ?>" target="_blank">
-            <strong><i class="far fa-envelope"></i>Email Us</strong>
+            <strong><i class="far fa-envelope"></i> Email Us</strong>
             <span class="text-lowercase"><?php echo $contactEmail; ?></span>
           </a></li>
-          <?php endif;
-          ?>
-          
-          <?php
-          $contactHours = get_field("contact_hours", "option");
-          if ($contactHours): ?>
-          <li class="icon d-none d-lg-block">
-            <strong><i class="far fa-clock"></i>Our Hours</strong>
-            <?php echo $contactHours; ?>
-          </li>
           <?php endif;
           ?>
 
@@ -146,9 +133,29 @@ setlocale(LC_MONETARY, "en_US"); ?><!DOCTYPE html>
             $contactPhone
           ); ?>" class="btn btn-primary">
             <strong><i class="fas fa-phone-alt"></i> Need to call us?</strong>
-            (513) 867-5744
+            <span class="text-lowercase"><?php echo $contactPhone; ?></span>
           </a></li>
           <?php endif;
+          ?>     
+          
+          <?php
+          $headerPhoto = get_field("contact_headshot", "option");
+          if ($headerPhoto):
+            $headerPhotoLink = get_field("contact_headshot_url", "option"); ?>
+          <li class="headshot">
+            <?php
+            if ($headerPhotoLink) {
+              printf("<a href=\"%s\">", $headerPhotoLink);
+            }
+            echo wp_get_attachment_image($headerPhoto, "medium");
+            if ($headerPhotoLink) {
+              echo "</a>";
+            }
+            ?>
+            
+          </li>
+          <?php
+          endif;
           ?>          
         </ul>
       </nav>

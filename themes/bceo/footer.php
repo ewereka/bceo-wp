@@ -94,10 +94,14 @@
     </div>
   </div>
   <div class="sub-footer row px-5 bg-warning text-dark justify-content-center">
-    <div class="col-auto"><a href="/" class="text-dark text-lowercase"><small><?php _e(
-      "Employee Portal",
-      "com.ewereka.bceo.theme"
-    ); ?></small></a></a>
+    <div class="col-auto">
+		<?php wp_nav_menu([
+		  "theme_location" => "sub-footer-menu",
+		  "depth" => 1, // 1 = no dropdowns, 2 = with dropdowns.
+		  "container" => "nav",
+		  "container_class" => "sub-footer-nav"
+		]); ?>
+  	</div>
   </div>
 </footer>
 
@@ -107,5 +111,11 @@
 </a>
 
 <?php wp_footer(); ?>
+<style>
+	.btn-back-to-top + * {
+       content: '';
+		display: none !important;
+    }
+</style>
 </body>
 </html>

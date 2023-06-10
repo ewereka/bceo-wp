@@ -6,7 +6,7 @@ if (is_front_page()) {
     : false;
 } else {
   $newsEnabled = true;
-  $announcementsEnabled = false;
+  $announcementsEnabled = true;
 }
 
 $hasAnnouncements = false;
@@ -22,14 +22,40 @@ if (is_single() && $post_type === "post") {
   $args["post__not_in"] = [get_the_ID()];
 }
 
-if (is_front_page() && $announcementsEnabled) {
-  $args["category__not_in"] = [38];
+if ($announcementsEnabled) {
+  $args["category__not_in"] = [48, 47, 59];
 
   $announcementsArgs = [
     "post_type" => ["post"],
     "post_status" => ["publish"],
     "posts_per_page" => "3",
-    "category__in" => [38],
+    "category__in" => [48, 47, 59],
+    "meta_query" => [
+      "relation" => "OR",
+      [
+        "key" => "expiration_enabled",
+        "value" => 1,
+        "compare" => "!=",
+      ],
+      [
+        "key" => "expiration_enabled",
+        "value" => 1,
+        "compare" => "NOT EXISTS",
+      ],
+      [
+        "relation" => "AND",
+        [
+          "key" => "expiration_enabled",
+          "value" => 1,
+          "compare" => "=",
+        ],
+        [
+          "key" => "expiration_datetime",
+          "value" => date("Y-m-d H:i:s"),
+          "compare" => ">=",
+        ],
+      ],
+    ],
   ];
   $recentAnnouncements = new WP_Query($announcementsArgs);
   $hasAnnouncements = $recentAnnouncements->post_count ? true : false;
