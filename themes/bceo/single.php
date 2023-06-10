@@ -42,15 +42,12 @@ get_template_part("partials/hero", $post_type);
                 <?php the_content(); ?>
               </div>
 
+              <?php if (get_the_field('show_contact_info')) : ?>
               <div class="entry-contact-information mt-5">
-                  <h5 style="text-transform: none;">For more information, contact:</h5>
-
-                  <ul class="no-bullets">
-                    <li><a href="mailto:HortonB@bceo.org">Betsy Horton</a>, BCEO Public Information Specialist</li>
-                    <li><a href="mailto:WilkensG@bceo.org">Greg Wilkens, P.E., P.S.</a>, Butler County Engineer</li>
-                    <li>Phone: <a href="tel:+1-513-867-5744">(513) 867-5744</a></li>
-                  </ul>
-                </div>
+                <h5 style="text-transform: none;"><?php the_field('heading_contact_info'); ?></h5>
+                <?php the_field('content_contact_info'); ?>
+              </div>
+              <?php endif; ?>
             </article>
         </div>
 
